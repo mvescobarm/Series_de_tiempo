@@ -1,0 +1,65 @@
+--- 
+title: "Análisis de la sismología en el municipio de Santos, Santander"
+author: "Grupo 1: Victoria Escobar - Wladimir Avila - Mario García"
+date: "22 de abril de 2024"
+knit: "bookdown::render_book"
+documentclass: krantz
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes
+lot: yes
+lof: yes
+fontsize: 12pt
+site: bookdown::bookdown_site
+description: "A guide to authoring books with R Markdown, including how to generate figures and tables, and insert cross-references, citations, HTML widgets, and Shiny apps in R Markdown. The book can be exported to HTML, PDF, and e-books (e.g. EPUB). The book style is customizable. You can easily write and preview the book in RStudio IDE or other editors, and host the book wherever you want (e.g. bookdown.org)."
+url: 'https\://bookdown.org/yihui/bookdown/'
+github-repo: rstudio/bookdown
+cover-image: images/cover.jpg
+ 
+--- 
+```{r ddddgdfgf, include=FALSE}
+library(svglite)
+
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2,
+  width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE
+)
+
+local({
+  r = getOption('repos')
+  if (!length(r) || identical(unname(r['CRAN']), '@CRAN@'))
+    r['CRAN'] = 'https://cran.rstudio.com' 
+  options(repos = r)
+})
+
+lapply(c('DT', 'formatR', 'svglite', 'rticles'), function(pkg) {
+  if (system.file(package = pkg) == '') install.packages(pkg)
+})
+
+# install from github
+githubs <- c('citr' = 'crsh/citr')
+lapply(names(githubs), function(pkg) {
+  if (system.file(package = pkg) == '') remotes::install_github(githubs[pkg], upgrade = FALSE)
+})
+
+```
+
+
+# <span style="color:blue">**Información Sismos**</span>
+
+Colombia es considerado un país de alto riesgo sísmico debido a que se ubica en el Cinturón de Fuego del Pacífico, una zona que concentra el 75% de los volcanes que existen en el mundo y donde suceden aproximadamente el 80% de los temblores más fuertes a nivel mundial.
+
+Este es llamado también Anillo de Fuego del Pacífico y está integrado por la zona montañosa del oeste de Argentina, Chile, Perú, Ecuador, Colombia, Panamá, Costa Rica, Nicaragua, El Salvador, Honduras, Guatemala, México, Estados Unidos y Canadá, para luego doblar a la altura de las Islas Aleutianas y bajar por las costas e islas de Rusia, Japón Taiwán, Filipinas, Indonesia, Malasia, Timor Oriental, Brunéi, Singapur, Papúa Nueva Guinea, Islas Salomón, Tonga, Tuvalu y Nueva Zelanda.
+
+En el caso específico de Colombia, el país se encuentra en dos áreas de subducción importantes, pues, por un lado, tiene la placa de Nazca con la Sudamericana y esta última que también choca con la placa del Caribe, lo que da paso a que tiemble constantemente.
+
+Ante esta situación, los departamentos de Nariño, Chocó, Caldas y Santander son los lugares en donde más tiembla; en este último se encuentra el Municipio de Los Santos, considerado como la segunda zona más sísmica del mundo.
+
+Por lo tanto,  analizar y predecir esta situación es crucial para implementar medidas de precaución y manejo de riesgos ante posibles eventos sísmicos en Colombia.
+
+## <span style="color:darkgreen">**Recurso Técnico de información:**</span>
+
+Los datos para efectuar esta investigación se obtuvieron del Servicio Geológico Colombiano (SGC) a través del Catálogo de Sismicidad en formato Excel correspondiente al período desde el 28 de febrero de 2011 hasta el 28 de febrero de 2018. Esta base de datos contiene 33.848 registros. 
+
+El SGC es una entidad pública adscrita al Ministerio de Minas y Energía de Colombia, la cual tiene como función principal la investigación geocientífica del territorio colombiano para generar conocimiento sobre los recursos naturales y los riesgos geológicos del país. Teniendo en cuenta lo anterior, se eligió como fuente de información, ya que, es una fuente confiable y verificada que garantiza la precisión y completitud de los datos. 

@@ -1,0 +1,94 @@
+# <span style="color:blue">**Contenido de la Data**</span>
+
+```{r setup, include = FALSE}
+library(readr) # leer .csv
+library(dplyr) # procesamiento de datos
+library(skimr) # muestra variables categoricas y numericas
+```
+
+A continuación se presenta la base de datos a utilizar en la investigación. 
+
+
+```{r}
+sismo <- read_csv("/Users/wladimiravila/Desktop/Series_de_tiempo_MGM/data_sismo.csv")
+sismo <- mutate_if(sismo, is.character, tolower) # pasamos a minúsculas
+glimpse(sismo)
+```
+
+## <span style="color:darkgreen">**Observación de los datos**</span>
+
+
+### **El Tiempo Universal Coordinado (HORA_UTC):**
+Es una escala de tiempo que es mantenida por los laboratorios de tiempo de todo el mundo y es determinada por relojes atómicos de alta precisión. El tiempo UTC es preciso a aproximadamente un nanosegundo (millonésima parte de un segundo) por día.
+
+### **Magnitud Local (Ml):**
+Donde A es la máxima amplitud de la traza registrada y Ao la amplitud máxima que sería producida por un sismo patrón, siendo éste aquel que produciría una deflexión de 0.001 mm en un sismógrafo ubicado a 100 km del epicentro.
+
+### **Magnitud de momento (Mw):**
+Esta magnitud es la más robusta; a diferencia de ML, mB y MS, la escala Mw no se satura, por lo que hoy en día es la más confiable y la más usada por las agencias dedicadas a la detección de sismos. También es la magnitud más usada por científicos para comparar los tamaños entre sismos.
+
+### **Root Mean Square (RMS):**
+Es la medida del error, comparando la diferencia promedio entre el tiempo de arribo teórico y el tiempo de arribo observado en segundos, utilizando las lecturas de los sismogramas.
+
+### **Brecha sísmica (GAP):**
+
+Zona geológica en la que no ha ocurrido un sismo fuerte durante un periodo prolongado de tiempo.
+
+
+## <span style="color:darkgreen">**Descripción Datos** </span>
+
+```{r}
+skim(sismo)
+```
+
+
+## <span style="color:darkgreen">**Imputar Datos**</span>
+
+* Existen **31826** datos faltantes **NA** para la variable **Magnitud Mw** por tanto se decide remover de la base de datos 
+* Para las demás variables de tipo categórico, fecha, tiempo, y numérico no hay datos faltantes
+* Las variables categóricas corresponden a la descripción del departamento de Santander, en su municipio de Los_Santos y para la columna estado se encuentran todos los datos en revisado, por tanto se procede a removerlas de la data original sismo
+* Para el ejercicio académico se ha decidido remover las variables de error de latitud, longitud, y profundidad
+* También se renombra las variables que contienen comillas en su estructura de columnas
+
+```{r}
+sismo_2 <- sismo
+# las columnas retiradas fueron 7,8,9,13,14,15,16
+sismo_2 <- sismo_2 [, c(1,2,3,4,5,6,10,11,12)] # data con 9 variables
+colnames(sismo_2)[3] <-"LATITUD"  # renombrar variable
+colnames(sismo_2)[4] <-"LONGITUD"  # renombrar variable
+colnames(sismo_2)[5] <-"PROFUNDIDAD"  # renombrar variable
+colnames(sismo_2)[6] <-"MAGNITUD_ML"  # renombrar variable
+colnames(sismo_2)[7] <-"NUM_FASES"  # renombrar variable
+colnames(sismo_2)[8] <-"RMS"  # renombrar variable
+colnames(sismo_2)[9] <-"GAP"  # renombrar variable
+head(sismo_2)
+```
+
+# <span style="color:blue">**Análisis Gráfico**</span>
+
+Gráficas según el tipo de variable
+
+```{r}
+library(ggplot2) # visualización
+library(ggpubr) # visualización
+library(plotly) # visualización
+library(CGPfunctions) # gráfica cuantitativas
+```
+
+
+## <span style="color:darkgreen">**Variables Numéricas** </span>
+
+```{r}
+g1 = ggplot(sismo_2, aes(x = LATITUD)) + geom_histogram(fill="royalblue") + theme_gray()
+g2 = ggplot(sismo_2, aes(x = LONGITUD)) + geom_histogram(fill="royalblue") + theme_gray()
+g3 = ggplot(sismo_2, aes(x = PROFUNDIDAD)) + geom_histogram(fill="royalblue") + theme_gray()
+g4 = ggplot(sismo_2, aes(x = MAGNITUD_ML)) + geom_histogram(fill="royalblue") + theme_gray()
+g5 = ggplot(sismo_2, aes(x = NUM_FASES)) + geom_histogram(fill="royalblue") + theme_gray()
+g6 = ggplot(sismo_2, aes(x = RMS)) + geom_histogram(fill="royalblue") + theme_gray()
+g7 = ggplot(sismo_2, aes(x = GAP)) + geom_histogram(fill="royalblue") + theme_gray()
+
+
+ggarrange(g1, g2, g3, g4, g5, g6, g7, labels = c("A", "B", "C","D", "E", "F","G"), ncol = 2, nrow = 2)
+```
+
+
