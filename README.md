@@ -3,3 +3,8 @@ El presente repositorio contiene el documento bookdown trabajado en la materia a
 
 para ver el libro por favor dirigirse a la carpeta inst/sismos/
 
+# Estudiantes:
+
+Victoria Escobar
+Wladimir Avila
+Mario Moncayo
