@@ -5,6 +5,6 @@ para ver el libro por favor dirigirse a la carpeta inst/sismos/
 
 # Estudiantes:
 
-Victoria Escobar
-Wladimir Avila
-Mario Moncayo
+- Victoria Escobar
+- Wladimir Avila
+- Mario Moncayo
