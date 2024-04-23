@@ -92,3 +92,19 @@ ggarrange(g1, g2, g3, g4, g5, g6, g7, labels = c("A", "B", "C","D", "E", "F","G"
 ```
 
 
+
+```{r setup, include = FALSE}
+library(forecast) #predicción
+library(tseries)  #análisis de series de tiempo
+library(timsac)
+library(changepoint) #detectar puntos de cambios
+```
+
+```{r}
+sismo_3 <- sismo_2 # copiamos data2
+sismo_3 <- sismo_3 [, c(1,2)] # data con 2 variables 1:fecha, 2:hora
+sismo_3$fecha_hora <- paste(sismo_3$FECHA," ",sismo_3$HORA_UTC)
+sismo_3 <- sismo_3[order(sismo_3$FECHA), ] #ordenamo sismo_3 de menor a mayor fecha
+head(sismo_3,2)
+```
+
