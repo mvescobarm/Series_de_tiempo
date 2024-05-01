@@ -71,7 +71,6 @@ head(sismo_2)
 Gráficas según el tipo de variable
 
 ```{r setup, include = FALSE}
-library(ggplot2) # visualización
 library(ggpubr) # visualización
 library(plotly) # visualización
 library(CGPfunctions) # gráfica cuantitativas
@@ -108,25 +107,21 @@ library(changepoint) #detectar puntos de cambios
 ```{r}
 sismo_3 <- sismo_2 # copiamos data2
 sismo_3 <- sismo_3 [, c(1,2)] # data con 2 variables 1:fecha, 2:hora
-sismo_3$fecha_hora <- paste(sismo_3$FECHA," ",sismo_3$HORA_UTC)# unir columnas 1 y 2
-sismo_3$fecha_hora <- as.POSIXct(sismo_3$fecha_hora) # convertir a tipo date time
+#sismo_3$fecha_hora <- paste(sismo_3$FECHA," ",sismo_3$HORA_UTC)# unir columnas 1 y 2
+#sismo_3$fecha_hora <- as.POSIXct(sismo_3$fecha_hora) # convertir a tipo date time
+sismo_3$FECHA_UNIX <- as.POSIXct(sismo_3$FECHA)
 sismo_3 <- sismo_3[order(sismo_3$FECHA), ] #ordenamo sismo_3 de menor a mayor
 head(sismo_3,2)
 ```
-
-```{r}
-indice.ts.frequency
-```
-
 
 
 **Serie de tiempo**
 
 ```{r}
-indice.ts <- ts(sismo_3$fecha_hora,start = c(2011,2), frequency = 6)
-head(indice.ts,10)
+indice.ts <- ts(sismo_3$FECHA,start = c(2011,2), end = c(2018,12), frequency = 12)
+#head(indice.ts,10)
+indice.ts
 ```
-Creo aquí debemos agrupar por mes ejemplo 2011 mes 02, 2011 mes 03, y así sucecivamente pero ya no alcance a investigar más
 
 
 **Datos de la serie**
@@ -139,14 +134,16 @@ start(indice.ts)
 "fin serie"
 end(indice.ts)
 ```
+
 **Gráfica de la serie**
 
-aquí nos debiera permitir visualizar la gráfica de la serie pero tampoco 
 
 ```{r}
-plot(indice.ts,main="",ylab="valor", col='orange', xlab ="Años")
+hist(indice.ts,main="",ylab="valor", col='orange', xlab ="FECHA_UNIX")
 title(main="SISMOS")
 ```
+
+
 
 
 
