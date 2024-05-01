@@ -1,3 +1,43 @@
+--- 
+title: "Análisis de la sismología en el municipio de Santos, Santander"
+author: "Grupo 1: Victoria Escobar - Wladimir Avila - Mario García"
+date: "22 de abril de 2024"
+knit: "bookdown::render_book"
+documentclass: krantz
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes
+lot: yes
+lof: yes
+fontsize: 12pt
+site: bookdown::bookdown_site
+description: "A guide to authoring books with R Markdown, including how to generate figures and tables, and insert cross-references, citations, HTML widgets, and Shiny apps in R Markdown. The book can be exported to HTML, PDF, and e-books (e.g. EPUB). The book style is customizable. You can easily write and preview the book in RStudio IDE or other editors, and host the book wherever you want (e.g. bookdown.org)."
+url: 'https\://bookdown.org/yihui/bookdown/'
+github-repo: rstudio/bookdown
+cover-image: images/cover.jpg
+ 
+--- 
+
+# <span style="color:blue">**Información Sismos**</span>
+
+Placeholder
+
+
+## <span style="color:darkgreen">**Recurso Técnico de información:**</span>
+
+<!--chapter:end:index.Rmd-->
+
+# About the Author {-}
+
+Estudiantes de la Maestría en Ciencia de Datos de la Universidad Javeriana de Cali.
+
+* Victoria Escobar:   mvictoria.escobarm@gmail.com
+* Wladimir Avila:     wladimiravila@gmail.com
+* Mario García:       mariogarciamoncayo2022@gmail.com
+
+<!--chapter:end:00-author.Rmd-->
+
 # <span style="color:blue">**Contenido de la Data**</span>
 
 ```{r setup, include = FALSE}
@@ -74,9 +114,7 @@ Gráficas según el tipo de variable
 library(ggpubr) # visualización
 library(plotly) # visualización
 library(CGPfunctions) # gráfica cuantitativas
-library(ggplot)
 ```
-
 
 
 ## <span style="color:darkgreen">**Variables Numéricas** </span>
@@ -117,44 +155,12 @@ head(sismo_3,2)
 ```
 
 
-```{r}
-sismo_4 <- sismo_2 # copiamos data2
-sismo_4 <- sismo_4 [, c(1,6)] # data con 2 variables 1:fecha, 6:magnitud
-sismo_4 <- sismo_4[order(sismo_4$FECHA), ] #ordenamos sismo_4 de menor a mayor para facilitar el análisis de datos cronológicos.
-head(sismo_4,2)
-```
-
-
-```{r}
-sismo_4_max <- sismo_4 %>% # Agrupamos por fecha y obtenemos el máximo de la magnitud para cada fecha
-group_by(FECHA) %>%
-summarise(MAX_MAGNITUD_ML = max(MAGNITUD_ML))
-
-head(sismo_4_max, 2)
-```
-
-
-```{r}
-# Crear un data frame con todas las fechas en el rango deseado
-todas_las_fechas <- data.frame(FECHA = seq(as.Date("2011-02-28"), as.Date("2018-02-28"), by = "day"))
-
-# Combinar con sismo_4_max para completar las fechas faltantes y asignar 0 a MAGNITUD_ML
-sismo_4_max_completo <- todas_las_fechas %>%
-  left_join(sismo_4_max, by = "FECHA") %>%
-  mutate(MAX_MAGNITUD_ML = ifelse(is.na(MAX_MAGNITUD_ML), 0, MAX_MAGNITUD_ML))
-
-# Visualizar los primeros resultados
-head(sismo_4_max_completo, 2)
-```
-
-
-
 **Serie de tiempo**
 
 ```{r}
-indice.ts <- ts(sismo_4_max_completo$MAX_MAGNITUD_ML,start = c(2011,2),end = c(2018,2), frequency = 365)
+indice.ts <- ts(sismo_3$MAGNITUD_ML,start = c(2011,2),end = c(2018,2), frequency = 12)
 #head(indice.ts,10) 
-head(indice.ts)
+indice.ts
 ```
 
 
@@ -186,4 +192,22 @@ title(main="SISMOS")
 
 
 
+
+
+<!--chapter:end:01-introduction.Rmd-->
+
+\backmatter
+
+`r if (knitr::is_html_output()) '
+# <span style="color:blue">**Bibliografía**</span> {-}
+'`
+
+```{r include=FALSE}
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'htmlwidgets', 'webshot', 'DT',
+  'miniUI', 'tufte', 'servr', 'citr', 'rticles'
+), 'packages.bib')
+```
+
+<!--chapter:end:10-references.Rmd-->
 
