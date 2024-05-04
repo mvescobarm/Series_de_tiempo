@@ -18,13 +18,51 @@ github-repo: rstudio/bookdown
 cover-image: images/cover.jpg
  
 --- 
+```{r ddddgdfgf, include=FALSE}
+library(svglite)
+
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2,
+  width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE
+)
+
+local({
+  r = getOption('repos')
+  if (!length(r) || identical(unname(r['CRAN']), '@CRAN@'))
+    r['CRAN'] = 'https://cran.rstudio.com' 
+  options(repos = r)
+})
+
+lapply(c('DT', 'formatR', 'svglite', 'rticles'), function(pkg) {
+  if (system.file(package = pkg) == '') install.packages(pkg)
+})
+
+# install from github
+githubs <- c('citr' = 'crsh/citr')
+lapply(names(githubs), function(pkg) {
+  if (system.file(package = pkg) == '') remotes::install_github(githubs[pkg], upgrade = FALSE)
+})
+
+```
+
 
 # <span style="color:blue">**Información Sismos**</span>
 
-Placeholder
+Colombia es considerado un país de alto riesgo sísmico debido a que se ubica en el Cinturón de Fuego del Pacífico, una zona que concentra el 75% de los volcanes que existen en el mundo y donde suceden aproximadamente el 80% de los temblores más fuertes a nivel mundial.
 
+Este es llamado también Anillo de Fuego del Pacífico y está integrado por la zona montañosa del oeste de Argentina, Chile, Perú, Ecuador, Colombia, Panamá, Costa Rica, Nicaragua, El Salvador, Honduras, Guatemala, México, Estados Unidos y Canadá, para luego doblar a la altura de las Islas Aleutianas y bajar por las costas e islas de Rusia, Japón Taiwán, Filipinas, Indonesia, Malasia, Timor Oriental, Brunéi, Singapur, Papúa Nueva Guinea, Islas Salomón, Tonga, Tuvalu y Nueva Zelanda.
+
+En el caso específico de Colombia, el país se encuentra en dos áreas de subducción importantes, pues, por un lado, tiene la placa de Nazca con la Sudamericana y esta última que también choca con la placa del Caribe, lo que da paso a que tiemble constantemente.
+
+Ante esta situación, los departamentos de Nariño, Chocó, Caldas y Santander son los lugares en donde más tiembla; en este último se encuentra el Municipio de Los Santos, considerado como la segunda zona más sísmica del mundo.
+
+Por lo tanto,  analizar y predecir esta situación es crucial para implementar medidas de precaución y manejo de riesgos ante posibles eventos sísmicos en Colombia.
 
 ## <span style="color:darkgreen">**Recurso Técnico de información:**</span>
+
+Los datos para efectuar esta investigación se obtuvieron del Servicio Geológico Colombiano (SGC) a través del Catálogo de Sismicidad en formato Excel correspondiente al período desde el 28 de febrero de 2011 hasta el 28 de febrero de 2018. Esta base de datos contiene 33.848 registros. 
+
+El SGC es una entidad pública adscrita al Ministerio de Minas y Energía de Colombia, la cual tiene como función principal la investigación geocientífica del territorio colombiano para generar conocimiento sobre los recursos naturales y los riesgos geológicos del país. Teniendo en cuenta lo anterior, se eligió como fuente de información, ya que, es una fuente confiable y verificada que garantiza la precisión y completitud de los datos. 
 
 <!--chapter:end:index.Rmd-->
 
@@ -50,9 +88,9 @@ A continuación se presenta la base de datos a utilizar en la investigación.
 
 
 ```{r}
-#sismo <- read_csv("Ruta pc de victoria/data_sismo.csv")#Victoria
+sismo <- read_csv("C:/Users/victo/Documents/Maestría/1.2. Segundo semestre/Series de tiempo/data_sismo.csv")#Victoria
 #sismo <- read_csv("/Users/wladimiravila/Desktop/Series_de_tiempo_MGM/data_sismo.csv")#wladimir
-sismo <- read_csv("D:/Documentos/GitHub/Series_de_tiempo/data_sismo.csv")#Mario
+#sismo <- read_csv("D:/Documentos/GitHub/Series_de_tiempo/data_sismo.csv")#Mario
 sismo <- mutate_if(sismo, is.character, tolower) # pasamos a minúsculas
 glimpse(sismo)
 ```
@@ -82,7 +120,9 @@ Zona geológica en la que no ha ocurrido un sismo fuerte durante un periodo prol
 ```{r}
 skim(sismo)
 ```
+La profundidad de sismos en kilómetros muestra una media de 145.0610908, con una desviación estándar de 5.16222274.Por su aprte, las magnitudes Ml y Mw, tienen medias de 1.8909980 y 3.4296736 respectivamente. La magnitud Mw muestra una tasa de completitud más baja, con un 5.97% de datos faltantes.
 
+El número de fases registradas por evento tiene una media de 9.8856949, el RMS (Root Mean Square) y GAP (Brecha) presentan una media de 0.3912964 y 144.3370952 respectivamente.
 
 ## <span style="color:darkgreen">**Imputar Datos**</span>
 
@@ -114,7 +154,9 @@ Gráficas según el tipo de variable
 library(ggpubr) # visualización
 library(plotly) # visualización
 library(CGPfunctions) # gráfica cuantitativas
+library(ggplot2)
 ```
+
 
 
 ## <span style="color:darkgreen">**Variables Numéricas** </span>
@@ -132,6 +174,10 @@ g7 = ggplot(sismo_2, aes(x = GAP)) + geom_histogram(fill="royalblue") + theme_gr
 ggarrange(g1, g2, g3, g4, g5, g6, g7, labels = c("A", "B", "C","D", "E", "F","G"), ncol = 2, nrow = 2)
 ```
 
+Los gráficos muestran la distribución de la latitud, longitud, profundidad, magnitud, número de fases,  Root Mean Square ( RMS) y la brecha sismica (GAP) de los sismos en el municipio de Los Santos, Santander. Cada gráfico representa la frecuencia de sismos en el eje y un dato específico relacionado con cada una de las variables en el eje x.
+La profundidad presenta una media de 145 km, con relación a la magnitud es una forma asimetrica a la derecha con una media  de  1.8, el número de fases es una forma asimetrica a la izquierda y tiene una media de 9.8, por su parte el RMS y el GAP presentan una forma multimodal ya que aparecen varios picos y sus medias son de 0.3 y de 144 respectivamente. 
+
+
 ## <span style="color:darkgreen">**Variable Serie Tiempo** </span>
 
 ```{r setup, include = FALSE}
@@ -144,9 +190,15 @@ library(changepoint) #detectar puntos de cambios
 
 **Análisis de la Data**
 
+A continuación se se seleccionan las variables de análisis para el presente ejercicio:
+
+Profundidad: esta variable se selcciono dado que representa la profundidad del foco sísmico y este influye en cómo se siente un terremoto en la superficie, los terremotos superficiales, son aquellos que tienen un foco a menos de 70 km de profundidad, estos generalmente causan mas daño ya que la energía que liberan no se dispera tanto antes de llegar a la superficie. 
+
+Magnitud: la magnitud en Colombia se reorta utilizando la escala de Richter, esta medida permite conocer cuanta es la energía liberada por un sismo.
+
 ```{r}
 sismo_3 <- sismo_2 # copiamos data2
-sismo_3 <- sismo_3 [, c(1,2,6)] # data con 2 variables 1:fecha, 2:hora, 6:magnitud
+sismo_3 <- sismo_3 [, c(1,5,6)] # data con 3 variables 1:fecha, 5:profundidad, 6:magnitud
 #sismo_3$fecha_hora <- paste(sismo_3$FECHA," ",sismo_3$HORA_UTC)# unir columnas 1 y 2
 #sismo_3$fecha_hora <- as.POSIXct(sismo_3$fecha_hora) # convertir a tipo date time
 #sismo_3$FECHA_UNIX <- as.POSIXct(sismo_3$FECHA)
@@ -154,15 +206,52 @@ sismo_3 <- sismo_3[order(sismo_3$FECHA), ] #ordenamo sismo_3 de menor a mayor
 head(sismo_3,2)
 ```
 
-
-**Serie de tiempo**
+Se agrupan las fechas para obtener un dato único por día, con relación a la magnitud se decidió calcular el maximo de cada día para conocer el sismo que libera la mayor cantidad de energía y con relación a la profundidad se decidió calcular el minimo con el fin de determianr el sismo que esta mas cerca a la superficie y puede causar mas daño.
 
 ```{r}
-indice.ts <- ts(sismo_3$MAGNITUD_ML,start = c(2011,2),end = c(2018,2), frequency = 12)
-#head(indice.ts,10) 
-indice.ts
+sismo_4_max <- sismo_3 %>% # Agrupamos por fecha y obtenemos el máximo de la magnitud para cada fecha
+  group_by(FECHA) %>% 
+  summarise(MAX_MAGNITUD_ML = max(MAGNITUD_ML),
+            MIN_PROFUNDIDAD = min(PROFUNDIDAD))
+head(sismo_4_max, 2)
 ```
 
+Dado que no hay información para todos los días del año entre el 28 de febrero de 2011 y el 28 de febrero de 2018 primero se creo un data frame con todas las fechas en ese rango y posteriormente los datos faltantes en las variables MAGNITUD Y PROFUNCIDAD se llenaron de la siguiente forma:
+
+Profundidad: la profundidad se decio llenar con la media que es 145.0610908. Esta decición esta fundamentada en que la revisar la gráfica de series de tiempo, si se llenaran con profundidad 0 generaria mucho ruido y no permitiria visualizar adecuadamente los simso que realmente presentan una profundida baja y cercana a la superficie.
+
+Magnitud: la magnitud se decidio llenar con 0.
+
+```{r}
+# Crear un data frame con todas las fechas en el rango deseado
+todas_las_fechas <- data.frame(FECHA = seq(as.Date("2011-02-28"), as.Date("2018-02-28"), by = "day"))
+
+sismo_4_max_completo <- todas_las_fechas %>%
+  left_join(sismo_4_max, by = "FECHA") %>%
+  mutate(MAX_MAGNITUD_ML = ifelse(is.na(MAX_MAGNITUD_ML), 0, MAX_MAGNITUD_ML),
+         MIN_PROFUNDIDAD = ifelse(is.na(MIN_PROFUNDIDAD), 145.0610908, MIN_PROFUNDIDAD))
+
+head(sismo_4_max_completo, 2)
+
+```
+
+Se revisa que el número de filas concurde para comprobar que se encuentran todos los días entre el 28 de febrero de 2011 y el 28 de febrero de 2018.
+
+```{r}
+nrow(todas_las_fechas)
+```
+
+```{r}
+nrow(sismo_4_max_completo)
+```
+
+**Serie de tiempo Magnitud**
+
+```{r}
+indice.ts <- ts(sismo_4_max_completo$MAX_MAGNITUD_ML,start = c(2011,2),end = c(2018,2), frequency = 365)
+#head(indice.ts,10) 
+head(indice.ts)
+```
 
 **Datos de la serie**
 
@@ -182,11 +271,44 @@ end(indice.ts)
 hist(indice.ts,main="",ylab="valor", col='orange', xlab ="MAGNITUD_ML")
 title(main="SISMOS")
 ```
-
+La distribución de la magnitud de los sismos en el municipio de Los Santos Santander evidencia que la mayoria de los sismos presentados son de magnitud baja y no presnetan un mayor riezgo para la población. Hay presencia de sismos de magnitud fuerte sin embargo hay que revisar la profundidad de estos para determinar si causan daños a la población.
 
 
 ```{r}
 plot(indice.ts,main="",ylab="valor", col='orange', xlab ="FECHA")
+title(main="SISMOS")
+```
+
+**Serie de tiempo Profundidad**
+
+```{r}
+P_indice.ts <- ts(sismo_4_max_completo$MIN_PROFUNDIDAD,start = c(2011,2),end = c(2018,2), frequency = 365)
+#head(indice.ts,10) 
+head(P_indice.ts)
+```
+
+**Datos de la serie**
+
+```{r}
+"Tipo ts"
+class(P_indice.ts)
+"Inicio serie"
+start(P_indice.ts)
+"fin serie"
+end(P_indice.ts)
+```
+
+**Gráfica de la serie**
+
+```{r}
+hist(P_indice.ts,main="",ylab="valor", col='saddlebrown', xlab ="PROFUNDIDA")
+title(main="SISMOS")
+```
+La distribución de la profundiad de los sismos en el municipio de Los Santos Santander evidencia que la mayoria de los sismos presentados son de alta profunidad y no presnetan un mayor riezgo para la población. 
+
+
+```{r}
+plot(P_indice.ts,main="",ylab="valor", col='saddlebrown', xlab ="FECHA")
 title(main="SISMOS")
 ```
 
