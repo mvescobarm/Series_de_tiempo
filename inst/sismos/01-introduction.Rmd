@@ -191,14 +191,14 @@ end(indice.ts)
 
 ```{r}
 hist(indice.ts,main="",ylab="valor", col='orange', xlab ="MAGNITUD_ML")
-title(main="SISMOS")
+title(main="MAGNITUD DEL SISMO EN EL TIEMPO")
 ```
 La distribución de la magnitud de los sismos en el municipio de Los Santos Santander evidencia que la mayoria de los sismos presentados son de magnitud baja y no presnetan un mayor riezgo para la población. Hay presencia de sismos de magnitud fuerte sin embargo hay que revisar la profundidad de estos para determinar si causan daños a la población.
 
 
 ```{r}
 plot(indice.ts,main="",ylab="valor", col='orange', xlab ="FECHA")
-title(main="SISMOS")
+title(main="MAGNITUD DEL SISMO EN EL TIEMPO")
 ```
 
 **Serie de tiempo Profundidad**
@@ -224,7 +224,7 @@ end(P_indice.ts)
 
 ```{r}
 hist(P_indice.ts,main="",ylab="valor", col='saddlebrown', xlab ="PROFUNDIDA")
-title(main="SISMOS")
+title(main="PROFUNDIDAD DEL SISMO (KM) EN EL TIEMPO")
 ```
 La distribución de la profundiad de los sismos en el municipio de Los Santos Santander evidencia que la mayoria de los sismos presentados son de alta profunidad y no presnetan un mayor riezgo para la población. 
 
@@ -232,9 +232,22 @@ La distribución de la profundiad de los sismos en el municipio de Los Santos Sa
 
 ```{r}
 plot(P_indice.ts,main="",ylab="valor", col='saddlebrown', xlab ="FECHA")
-title(main="SISMOS")
+title(main="PROFUNDIDAD DEL SISMO (KM) EN EL TIEMPO")
 ```
 
+```{r}
+library(plotly)
 
+# Gráfico combinado de profundidad y magnitud
+combined_plot <- plot_ly() %>%
+  add_trace(data = sismo_4_max_completo, x = ~FECHA, y = ~MIN_PROFUNDIDAD, text = ~paste("Magnitud: ", MAX_MAGNITUD_ML), type = 'scatter', mode = 'markers', name = 'Profundidad', marker = list(color = 'saddlebrown')) %>%
+  layout(title = "Profundidad y Magnitud del sismo en el tiempo",
+         xaxis = list(title = "Fecha"),
+         yaxis = list(title = "Valor"),
+         showlegend = TRUE)
+
+# Mostrar el gráfico
+combined_plot
+```
 
 
