@@ -229,6 +229,7 @@ title(main="SISMOS")
 La distribución de la profundiad de los sismos en el municipio de Los Santos Santander evidencia que la mayoria de los sismos presentados son de alta profunidad y no presnetan un mayor riezgo para la población. 
 
 
+
 ```{r}
 plot(P_indice.ts,main="",ylab="valor", col='saddlebrown', xlab ="FECHA")
 title(main="SISMOS")
