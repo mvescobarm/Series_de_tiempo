@@ -365,4 +365,107 @@ Box.test(residuales, type="Ljung-Box")
 ```
 Los resultados de las pruebas estadísticas aplicadas a los residuos del modelo ARIMA cuando la variable es Profundidad, evidencia que la prueba de normalidad de Shapiro-Wilk arroja  un p-value = 2.2e-16. Este resultado indica que los residuos no siguen una distribución normal. Por otro lado, la prueba de autocorrelación de Ljung-Box muestra un p-value = 0.972. El cual es mayor a 0.05, sugiriendo que no hay evidencia suficiente para rechazar la hipótesis nula de que los residuos son independientes y no están autocorrelacionados. Por tanto, se determina que el modelo ARIMA ajustado es adecuado en términos de independencia de los residuos.
 
+# <span style="color:blue">**Algoritmo Facebook's Prophet**</span>
+
+```{r}
+# Cargar el paquete
+library(prophet)
+
+# Asumiendo que los datos están en un data.frame llamado sismo
+# Convertir las fechas y profundidades en un formato adecuado para Prophet
+data <- data.frame(
+  ds = as.Date(sismo_4_max_completo$FECHA), 
+  y = sismo_4_max_completo$MIN_PROFUNDIDAD
+)
+
+# Ajustar el modelo Prophet
+modelo_profundidad <- prophet(data)
+
+# Hacer predicciones para los próximos 4 meses (120 días)
+future <- make_future_dataframe(modelo_profundidad, periods = 120)
+pronostico_profundidad <- predict(modelo_profundidad, future)
+
+# Graficar las predicciones
+plot(modelo_profundidad, pronostico_profundidad) +
+  labs(title = "Pronóstico de Profundidad de Sismos", y = "Profundidad", x = "Tiempo")
+
+# Evaluar los residuos
+residuales <- data$y - pronostico_profundidad$yhat[1:length(data$y)]
+
+# Prueba de Shapiro-Wilk para normalidad
+shapiro.test(residuales)
+
+# Prueba de Ljung-Box para autocorrelación
+Box.test(residuales, type = "Ljung-Box")
+
+```
+
+```{r}
+library(forecast)
+
+# Ajustar un modelo de regresión lineal simple
+modelo_regresion <- lm(y ~ ds, data = data)
+
+# Predicciones de regresión lineal
+data$pred_regresion <- predict(modelo_regresion, newdata = data)
+
+# Evaluar los residuos del modelo de regresión
+residuales_regresion <- data$y - data$pred_regresion
+
+# Prueba de Shapiro-Wilk para normalidad de los residuos de la regresión
+shapiro_regresion <- shapiro.test(residuales_regresion)
+
+# Prueba de Ljung-Box para autocorrelación de los residuos de la regresión
+box_regresion <- Box.test(residuales_regresion, type = "Ljung-Box")
+
+# Resultados
+print("Resultados del modelo Prophet:")
+print(shapiro_prophet)
+print(box_prophet)
+
+print("Resultados del modelo de regresión:")
+print(shapiro_regresion)
+```
+```{r}
+future$ds <- as.Date(future$ds)
+```
+
+
+```{r}
+head(data)
+head(pronostico_profundidad)
+head(pronostico_prophet)
+head(pronostico_profundidad$yhat)
+head(data$ds)
+head(data$y)
+head(future)
+# Graficar las predicciones de ambos modelos para comparación
+plot(data$ds, data$y, main = "Comparación de Predicciones de Modelos", ylab = "Profundidad", xlab = "Tiempo", col = "black", pch = 16)
+lines(future$ds, pronostico_prophet$yhat, col = "blue", lwd = 2, lty = 1)
+lines(modelo_profundidad$ds, modelo_profundidad$y, col = "red", lwd = 2, lty = 2)
+legend("topleft", legend = c("Datos Observados", "Pronóstico Prophet", "Pronóstico Regresión"), col = c("black", "blue", "red"), lty = c(NA, 1, 2), pch = c(16, NA, NA))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
