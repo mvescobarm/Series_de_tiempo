@@ -154,7 +154,6 @@ sismo_4_max_completo <- todas_las_fechas %>%
          MIN_PROFUNDIDAD = ifelse(is.na(MIN_PROFUNDIDAD), 145.0610908, MIN_PROFUNDIDAD))
 
 head(sismo_4_max_completo, 2)
-
 ```
 
 Se revisa que el número de filas concurde para comprobar que se encuentran todos los días entre el 28 de febrero de 2011 y el 28 de febrero de 2018.
@@ -297,10 +296,10 @@ Este último es más adecuado para datos con componentes de tendencia y estacion
 library(forecast)
 
 # Ajustar el modelo ARIMA
-modelo_magnitud <- auto.arima(indice.ts)
+modelo_magnitud_arima <- auto.arima(indice.ts)
 
 # Resumen del modelo
-summary(modelo_magnitud)
+summary(modelo_magnitud_arima)
 ```
 El modelo ARIMA(1,0,1) ajustado a la serie temporal indice.ts (Magnitud de los sismos) muestra un ajuste adecuado y preciso para los datos. Los coeficientes del modelo, ar1 (0.9439) y ma1 (-0.8268), junto con su media (2.9468), son significativos, como lo indican sus bajos errores estándar. Las medidas estadísticas del modelo AIC (5001.51), AICc (5001.52) y BIC (5024.89), sugieren un buen ajuste del modelo a los datos.
 
@@ -309,10 +308,10 @@ Por otra parte, las medidas de error del conjunto de entrenamiento, como RMSE (0
 
 ```{r}
 # Hacer predicciones para los próximos 4 meses utilizando la función forecast del paquete forecast
-pronostico_magnitud <- forecast::forecast(modelo_magnitud, h=120)
+pronostico_magnitud_arima <- forecast::forecast(modelo_magnitud_arima, h=120)
 
 # Graficar las predicciones
-plot(pronostico_magnitud, main="Pronóstico de Magnitud de Sismos", ylab="Magnitud", xlab="Tiempo")
+plot(pronostico_magnitud_arima, main="Pronóstico de Magnitud de Sismos", ylab="Magnitud", xlab="Tiempo")
 
 ```
 La gráfica presenta el pronóstico de la magnitud de los sismos para los próximos 4 meses basado en un modelo ARIMA ajustado a los datos históricos desde 2011 hasta 2018. La consistencia entre las predicciones y los datos históricos sugiere que el modelo ha capturado bien los patrones de la serie temporal y los intervalos de confianza indican una mayor certeza en las predicciones a corto plazo y mayor incertidumbre en el largo plazo.
@@ -320,13 +319,13 @@ La gráfica presenta el pronóstico de la magnitud de los sismos para los próxi
 
 ```{r}
 # Residuos del modelo
-residuales <- residuals(modelo_magnitud)
+residuales_magnitud_arima <- residuals(modelo_magnitud_arima)
 
 # Prueba de Shapiro-Wilk para normalidad
-shapiro.test(residuales)
+shapiro.test(residuales_magnitud_arima)
 
 # Prueba de Ljung-Box para autocorrelación
-Box.test(residuales, type="Ljung-Box")
+Box.test(residuales_magnitud_arima, type="Ljung-Box")
 ```
 Los resultados de las pruebas estadísticas aplicadas a los residuos del modelo ARIMA cuando la variable es Magnitud (ML), evidencia que la prueba de normalidad de Shapiro-Wilk arroja  un p-value = 2.2e-16. Este resultado indica que los residuos no siguen una distribución normal. Por otro lado, la prueba de autocorrelación de Ljung-Box muestra un p-value = 0.5756. El cual es mayor a 0.05, sugiriendo que no hay evidencia suficiente para rechazar la hipótesis nula de que los residuos son independientes y no están autocorrelacionados. Por tanto, se determina que el modelo ARIMA ajustado es adecuado en términos de independencia de los residuos.
 
@@ -334,10 +333,10 @@ Los resultados de las pruebas estadísticas aplicadas a los residuos del modelo 
 
 ```{r}
 # Ajustar el modelo ARIMA
-modelo_profundidad <- auto.arima(P_indice.ts)
+modelo_profundidad_arima <- auto.arima(P_indice.ts)
 
 # Resumen del modelo
-summary(modelo_profundidad)
+summary(modelo_profundidad_arima)
 ```
 
 El modelo ARIMA(3,1,1) ajustado a la serie temporal P_indice.ts (Profundidad de los sismos) muestra un ajuste adecuado y preciso para los datos. Los coeficientes del modelo, ar1 (0.0102), ar2 (0.0169), ar3 (0.0439) y ma1 (-0.9775), son significativos, como lo indican los errores estándar bajos. Las medidas estadísticas del modelo AIC (18053.81), AICc (18053.83) y BIC (18083.04) sugieren un buen ajuste del modelo a los datos.
@@ -346,26 +345,30 @@ Por otra parte, las medidas de error del conjunto de entrenamiento, como RMSE (8
 
 ```{r}
 # Hacer predicciones para los próximos 4 meses utilizando la función forecast del paquete forecast
-pronostico_profundidad <- forecast::forecast(modelo_profundidad, h=120)
+pronostico_profundidad_arima <- forecast::forecast(modelo_profundidad_arima, h=120)
 
 # Graficar las predicciones
-plot(pronostico_profundidad, main="Pronóstico de Profundidad de Sismos", ylab="Profundidad", xlab="Tiempo")
+plot(pronostico_profundidad_arima, main="Pronóstico de Profundidad de Sismos", ylab="Profundidad", xlab="Tiempo")
 ```
 La gráfica presenta el pronóstico de la profundidad de los sismos para los próximos 4 meses basado en un modelo ARIMA ajustado a los datos históricos desde 2011 hasta 2018. La consistencia entre las predicciones y los datos históricos sugiere que el modelo ha capturado bien los patrones de la serie temporal y los intervalos de confianza indican una mayor certeza en las predicciones a corto plazo y mayor incertidumbre en el largo plazo.
 
 ```{r}
 # Residuos del modelo
-residuales <- residuals(modelo_profundidad)
+residuales_profundidad_arima <- residuals(modelo_profundidad_arima)
 
 # Prueba de Shapiro-Wilk para normalidad
-shapiro.test(residuales)
+shapiro.test(residuales_profundidad_arima)
 
 # Prueba de Ljung-Box para autocorrelación
-Box.test(residuales, type="Ljung-Box")
+Box.test(residuales_profundidad_arima, type="Ljung-Box")
 ```
 Los resultados de las pruebas estadísticas aplicadas a los residuos del modelo ARIMA cuando la variable es Profundidad, evidencia que la prueba de normalidad de Shapiro-Wilk arroja  un p-value = 2.2e-16. Este resultado indica que los residuos no siguen una distribución normal. Por otro lado, la prueba de autocorrelación de Ljung-Box muestra un p-value = 0.972. El cual es mayor a 0.05, sugiriendo que no hay evidencia suficiente para rechazar la hipótesis nula de que los residuos son independientes y no están autocorrelacionados. Por tanto, se determina que el modelo ARIMA ajustado es adecuado en términos de independencia de los residuos.
 
 # <span style="color:blue">**Algoritmo Facebook's Prophet**</span>
+
+A continuación se utiliza una herramienta que ayuda a predecir lo que va a pasar en el futuro usando datos del pasado. Esta herramienta fue creada por Facebook y es muy buena para trabajar con datos que cambian de manera regular como los datos de los sismos. A continuación se utiliza el algoritmo Prophet para la variable magnitud y profundidad de los sismos.
+
+## Magnitud
 
 ```{r}
 # Cargar el paquete
@@ -373,32 +376,80 @@ library(prophet)
 
 # Asumiendo que los datos están en un data.frame llamado sismo
 # Convertir las fechas y profundidades en un formato adecuado para Prophet
-data <- data.frame(
+data_magnitud <- data.frame(
+  ds = as.Date(sismo_4_max_completo$FECHA), 
+  y = sismo_4_max_completo$MAX_MAGNITUD_ML
+)
+
+# Ajustar el modelo Prophet
+modelo_magnitud_prophet <- prophet(data_magnitud)
+
+# Hacer predicciones para los próximos 4 meses (120 días)
+future <- make_future_dataframe(modelo_magnitud_prophet, periods = 120)
+pronostico_magnitud_prophet <- predict(modelo_magnitud_prophet, future)
+
+# Graficar las predicciones
+plot(modelo_magnitud_prophet, pronostico_magnitud_prophet) +
+  labs(title = "Pronóstico de Magnitud de Sismos", y = "Magnitud", x = "Tiempo")
+```
+La gráfica muestra el pronóstico de la magnitud de los sismos en el municipio de los Santos, Santander en el tiempo utilizando el modelo de series temporales Prophet. En el eje horizontal se representa el tiempo desde el año 2011 hasta el 2018, y en el eje vertical se presenta la magnitud de los sismos. Los puntos negros corresponden a las magnitudes observadas de los sismos, mientras que la línea azul muestra la tendencia central pronosticada por el modelo. Las bandas de color azul claro alrededor de la línea central representan los intervalos de confianza del pronóstico, indicando la incertidumbre del modelo en sus predicciones. La gráfica sugiere que la magnitud de los sismos ha permanecido relativamente constante en el tiempo, con algunas fluctuaciones y valores atípicos ocasionales.
+
+
+```{r}
+# Evaluar los residuos
+residuales_magnitud_prophet <- data$y - pronostico_magnitud_prophet$yhat[1:length(data$y)]
+
+# Prueba de Shapiro-Wilk para normalidad
+shapiro.test(residuales_magnitud_prophet)
+
+# Prueba de Ljung-Box para autocorrelación
+Box.test(residuales_magnitud_prophet, type = "Ljung-Box")
+```
+
+La primera es la prueba aplicada es la de normalidad de Shapiro-Wilk, cuyo valor p es significativamente menor que 0.05 (p < 2.2e-16), indicando que los residuos no siguen una distribución normal. La segunda es la prueba de Box-Ljung, que muestra un valor p de 0.01567, también menor que 0.05, lo que sugiere la presencia de autocorrelación en los residuos. 
+
+## Profundidad
+
+```{r}
+# Cargar el paquete
+library(prophet)
+
+# Asumiendo que los datos están en un data.frame llamado sismo
+# Convertir las fechas y profundidades en un formato adecuado para Prophet
+data_profundidad <- data.frame(
   ds = as.Date(sismo_4_max_completo$FECHA), 
   y = sismo_4_max_completo$MIN_PROFUNDIDAD
 )
 
 # Ajustar el modelo Prophet
-modelo_profundidad <- prophet(data)
+modelo_profundidad_prophet <- prophet(data_profundidad)
 
 # Hacer predicciones para los próximos 4 meses (120 días)
-future <- make_future_dataframe(modelo_profundidad, periods = 120)
-pronostico_profundidad <- predict(modelo_profundidad, future)
+future <- make_future_dataframe(modelo_profundidad_prophet, periods = 120)
+pronostico_profundidad_prophet <- predict(modelo_profundidad_prophet, future)
 
 # Graficar las predicciones
-plot(modelo_profundidad, pronostico_profundidad) +
+plot(modelo_profundidad_prophet, pronostico_profundidad_prophet) +
   labs(title = "Pronóstico de Profundidad de Sismos", y = "Profundidad", x = "Tiempo")
+```
 
+La gráfica muestra el pronóstico de la profundidad de los sismos en el tiempo utilizando el modelo Prophet. Los puntos negros corresponden a las profundidades observadas de los sismos, mientras que la línea azul muestra la tendencia central pronosticada por el modelo. Las bandas de color azul claro alrededor de la línea central indican los intervalos de confianza del pronóstico, reflejando la incertidumbre del modelo en sus predicciones. La gráfica evidencia que la profundidad de los sismos se ha mantenido relativamente constante a lo largo del tiempo, con algunos valores atípicos que se observan principalmente por debajo de los 100 kilómetros de profundidad.
+
+
+```{r}
 # Evaluar los residuos
-residuales <- data$y - pronostico_profundidad$yhat[1:length(data$y)]
+residuales_profunidad_prophet <- data$y - pronostico_profundidad_prophet$yhat[1:length(data$y)]
 
 # Prueba de Shapiro-Wilk para normalidad
-shapiro.test(residuales)
+shapiro.test(residuales_profunidad_prophet)
 
 # Prueba de Ljung-Box para autocorrelación
-Box.test(residuales, type = "Ljung-Box")
-
+Box.test(residuales_profunidad_prophet, type = "Ljung-Box")
 ```
+La prueba de normalidad de Shapiro-Wilk presenta un valor W de 0.42744 y un valor p significativamente menor que 2.2e-16, indicando que los residuos no siguen una distribución normal. Por otro lado, la prueba de Box-Ljung, con un valor X-squared de 1.2332, 1 grado de libertad, y un valor p de 0.2668, sugiere que no hay una autocorrelación significativa en los residuos (dado que el valor p es mayor que 0.05). Aunque los residuos no son normales, no muestran evidencia de autocorrelación, lo que indica que el modelo captura adecuadamente la independencia temporal de los datos.
+
+
+## Gráfica combinada 
 
 ```{r}
 library(forecast)
