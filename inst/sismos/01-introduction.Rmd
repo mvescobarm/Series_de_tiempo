@@ -449,53 +449,124 @@ Box.test(residuales_profunidad_prophet, type = "Ljung-Box")
 La prueba de normalidad de Shapiro-Wilk presenta un valor W de 0.42744 y un valor p significativamente menor que 2.2e-16, indicando que los residuos no siguen una distribución normal. Por otro lado, la prueba de Box-Ljung, con un valor X-squared de 1.2332, 1 grado de libertad, y un valor p de 0.2668, sugiere que no hay una autocorrelación significativa en los residuos (dado que el valor p es mayor que 0.05). Aunque los residuos no son normales, no muestran evidencia de autocorrelación, lo que indica que el modelo captura adecuadamente la independencia temporal de los datos.
 
 
-## Gráfica combinada 
+## Gráfica combinada Magnitud 
 
 ```{r}
+# Cargar las librerías necesarias
+library(prophet)
 library(forecast)
+library(ggplot2)
 
-# Ajustar un modelo de regresión lineal simple
-modelo_regresion <- lm(y ~ ds, data = data)
+# Suponiendo que los datos están en el data.frame llamado sismo_4_max_completo
+data_magnitud <- data.frame(
+  ds = as.Date(sismo_4_max_completo$FECHA), 
+  y = sismo_4_max_completo$MAX_MAGNITUD_ML
+)
 
-# Predicciones de regresión lineal
-data$pred_regresion <- predict(modelo_regresion, newdata = data)
+# Ajustar el modelo Prophet con estacionalidad diaria
+modelo_magnitud_prophet <- prophet(data_magnitud, daily.seasonality = TRUE)
 
-# Evaluar los residuos del modelo de regresión
-residuales_regresion <- data$y - data$pred_regresion
+# Crear el dataframe futuro para predicciones de Prophet
+future <- make_future_dataframe(modelo_magnitud_prophet, periods = 120)
+pronostico_magnitud_prophet <- predict(modelo_magnitud_prophet, future)
 
-# Prueba de Shapiro-Wilk para normalidad de los residuos de la regresión
-shapiro_regresion <- shapiro.test(residuales_regresion)
+# Ajustar el modelo ARIMA
+modelo_arima <- auto.arima(data_magnitud$y)
+pronostico_arima <- forecast(modelo_arima, h = 120)
+# Crear un dataframe para los resultados de Prophet
+resultados_prophet <- data.frame(
+  ds = future$ds,
+  yhat = pronostico_magnitud_prophet$yhat
+)
 
-# Prueba de Ljung-Box para autocorrelación de los residuos de la regresión
-box_regresion <- Box.test(residuales_regresion, type = "Ljung-Box")
+# Crear un dataframe para los resultados de ARIMA
+fechas_arima <- seq(max(data_magnitud$ds) + 1, by = "day", length.out = 120)
+resultados_arima <- data.frame(
+  ds = fechas_arima,
+  yhat = pronostico_arima$mean
+)
 
-# Resultados
-print("Resultados del modelo Prophet:")
-print(shapiro_prophet)
-print(box_prophet)
+# Combinar los resultados con los datos originales
+resultados_comb <- rbind(
+  data.frame(ds = data_magnitud$ds, y = data_magnitud$y, modelo = "Datos"),
+  data.frame(ds = resultados_prophet$ds, y = resultados_prophet$yhat, modelo = "Prophet"),
+  data.frame(ds = resultados_arima$ds, y = resultados_arima$yhat, modelo = "ARIMA")
+)
+# Graficar los resultados
+ggplot() +
+  geom_line(data = resultados_comb[resultados_comb$modelo == "Datos", ], 
+            aes(x = ds, y = y, color = modelo), size = 0.5) +
+  geom_line(data = resultados_comb[resultados_comb$modelo == "Prophet", ], 
+            aes(x = ds, y = y, color = modelo), size = 1) +
+  geom_line(data = resultados_comb[resultados_comb$modelo == "ARIMA", ], 
+            aes(x = ds, y = y, color = modelo), size = 1) +
+  labs(title = "Pronóstico de Magnitud de Sismos: Prophet vs ARIMA",
+       y = "Magnitud", x = "Fecha") +
+  theme_minimal() +
+  scale_color_manual(values = c("Datos" = "black", "Prophet" = "blue", "ARIMA" = "red"))
 
-print("Resultados del modelo de regresión:")
-print(shapiro_regresion)
 ```
+
+## Gráfica combinada Pronóstico 
+
 ```{r}
-future$ds <- as.Date(future$ds)
+library(prophet)
+library(forecast)
+library(ggplot2)
+
+# Asumiendo que los datos están en un data.frame llamado sismo
+# Convertir las fechas y profundidades en un formato adecuado para Prophet
+data_profundidad <- data.frame(
+  ds = as.Date(sismo_4_max_completo$FECHA), 
+  y = sismo_4_max_completo$MIN_PROFUNDIDAD
+)
+
+# Ajustar el modelo Prophet
+modelo_profundidad_prophet <- prophet(data_profundidad, daily.seasonality = TRUE)
+
+# Hacer predicciones para los próximos 4 meses (120 días)
+future <- make_future_dataframe(modelo_profundidad_prophet, periods = 120)
+pronostico_profundidad_prophet <- predict(modelo_profundidad_prophet, future)
+
+# Ajustar el modelo ARIMA
+modelo_arima <- auto.arima(data_profundidad$y)
+pronostico_arima <- forecast(modelo_arima, h = 120)
+# Crear un dataframe para los resultados de Prophet
+resultados_prophet <- data.frame(
+  ds = future$ds,
+  yhat = pronostico_profundidad_prophet$yhat
+)
+
+# Crear un dataframe para los resultados de ARIMA
+fechas_arima <- seq(max(data_profundidad$ds) + 1, by = "day", length.out = 120)
+resultados_arima <- data.frame(
+  ds = fechas_arima,
+  yhat = pronostico_arima$mean
+)
+
+# Combinar los resultados con los datos originales
+resultados_comb <- rbind(
+  data.frame(ds = data_profundidad$ds, y = data_profundidad$y, modelo = "Datos"),
+  data.frame(ds = resultados_prophet$ds, y = resultados_prophet$yhat, modelo = "Prophet"),
+  data.frame(ds = resultados_arima$ds, y = resultados_arima$yhat, modelo = "ARIMA")
+)
+# Graficar los resultados
+ggplot() +
+  geom_line(data = resultados_comb[resultados_comb$modelo == "Datos", ], 
+            aes(x = ds, y = y, color = modelo), size = 0.5) +
+  geom_line(data = resultados_comb[resultados_comb$modelo == "Prophet", ], 
+            aes(x = ds, y = y, color = modelo), size = 1) +
+  geom_line(data = resultados_comb[resultados_comb$modelo == "ARIMA", ], 
+            aes(x = ds, y = y, color = modelo), size = 1) +
+  labs(title = "Pronóstico de Profundidad de Sismos: Prophet vs ARIMA",
+       y = "Pronostico", x = "Fecha") +
+  theme_minimal() +
+  scale_color_manual(values = c("Datos" = "black", "Prophet" = "blue", "ARIMA" = "red"))
 ```
 
 
-```{r}
-head(data)
-head(pronostico_profundidad)
-head(pronostico_prophet)
-head(pronostico_profundidad$yhat)
-head(data$ds)
-head(data$y)
-head(future)
-# Graficar las predicciones de ambos modelos para comparación
-plot(data$ds, data$y, main = "Comparación de Predicciones de Modelos", ylab = "Profundidad", xlab = "Tiempo", col = "black", pch = 16)
-lines(future$ds, pronostico_prophet$yhat, col = "blue", lwd = 2, lty = 1)
-lines(modelo_profundidad$ds, modelo_profundidad$y, col = "red", lwd = 2, lty = 2)
-legend("topleft", legend = c("Datos Observados", "Pronóstico Prophet", "Pronóstico Regresión"), col = c("black", "blue", "red"), lty = c(NA, 1, 2), pch = c(16, NA, NA))
-```
+
+
 
 
 
