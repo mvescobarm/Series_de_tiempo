@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.1 Recurso Técnico de información: | Análisis de la sismología en el municipio de Santos, Santander</title>
+  <meta name="description" content="Base de datos de sismos" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.1 Recurso Técnico de información: | Análisis de la sismología en el municipio de Santos, Santander" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bookdown.org/yihui/bookdown//images/cover.jpg" />
+  <meta property="og:description" content="Base de datos de sismos" />
+  <meta name="github-repo" content="rstudio/bookdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.1 Recurso Técnico de información: | Análisis de la sismología en el municipio de Santos, Santander" />
+  
+  <meta name="twitter:description" content="Base de datos de sismos" />
+  <meta name="twitter:image" content="https://bookdown.org/yihui/bookdown//images/cover.jpg" />
+
+<meta name="author" content="Grupo 1: Victoria Escobar - Wladimir Avila - Mario García" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="información-sismos-1.html"/>
+<link rel="next" href="contenido-de-la-data.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Authoring Books with R Markdown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <span style="color:blue"><strong>Información Sismos</strong></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="recurso-técnico-de-información.html"><a href="recurso-técnico-de-información.html"><i class="fa fa-check"></i><b>1.1</b> <span style="color:darkgreen"><strong>Recurso Técnico de información:</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="2" data-path="autores.html"><a href="autores.html"><i class="fa fa-check"></i><b>2</b> Autores</a></li>
+<li class="chapter" data-level="3" data-path="información-sismos-1.html"><a href="información-sismos-1.html"><i class="fa fa-check"></i><b>3</b> <span style="color:blue"><strong>Información Sismos</strong></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="recurso-técnico-de-información-1.html"><a href="recurso-técnico-de-información-1.html"><i class="fa fa-check"></i><b>3.1</b> <span style="color:darkgreen"><strong>Recurso Técnico de información:</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="contenido-de-la-data.html"><a href="contenido-de-la-data.html"><i class="fa fa-check"></i><b>4</b> <span style="color:blue"><strong>Contenido de la Data</strong></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html"><i class="fa fa-check"></i><b>4.1</b> <span style="color:darkgreen"><strong>Observación de los datos</strong></span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#el-tiempo-universal-coordinado-hora_utc"><i class="fa fa-check"></i><b>4.1.1</b> <strong>El Tiempo Universal Coordinado (HORA_UTC):</strong></a></li>
+<li class="chapter" data-level="4.1.2" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#magnitud-local-ml"><i class="fa fa-check"></i><b>4.1.2</b> <strong>Magnitud Local (Ml):</strong></a></li>
+<li class="chapter" data-level="4.1.3" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#magnitud-de-momento-mw"><i class="fa fa-check"></i><b>4.1.3</b> <strong>Magnitud de momento (Mw):</strong></a></li>
+<li class="chapter" data-level="4.1.4" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#root-mean-square-rms"><i class="fa fa-check"></i><b>4.1.4</b> <strong>Root Mean Square (RMS):</strong></a></li>
+<li class="chapter" data-level="4.1.5" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#brecha-sísmica-gap"><i class="fa fa-check"></i><b>4.1.5</b> <strong>Brecha sísmica (GAP):</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="descripción-datos.html"><a href="descripción-datos.html"><i class="fa fa-check"></i><b>4.2</b> <span style="color:darkgreen"><strong>Descripción Datos</strong> </span></a></li>
+<li class="chapter" data-level="4.3" data-path="imputar-datos.html"><a href="imputar-datos.html"><i class="fa fa-check"></i><b>4.3</b> <span style="color:darkgreen"><strong>Imputar Datos</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="variable-numéricas.html"><a href="variable-numéricas.html"><i class="fa fa-check"></i><b>5</b> <span style="color:blue"><strong>Variable Numéricas</strong></span></a></li>
+<li class="chapter" data-level="6" data-path="variable-serie-tiempo.html"><a href="variable-serie-tiempo.html"><i class="fa fa-check"></i><b>6</b> <span style="color:darkgreen"><strong>Variable Serie Tiempo</strong> </span></a></li>
+<li class="chapter" data-level="7" data-path="holt-winter.html"><a href="holt-winter.html"><i class="fa fa-check"></i><b>7</b> <span style="color:blue"><strong>Holt-Winter</strong></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="magnitud.html"><a href="magnitud.html"><i class="fa fa-check"></i><b>7.1</b> Magnitud</a></li>
+<li class="chapter" data-level="7.2" data-path="profundidad.html"><a href="profundidad.html"><i class="fa fa-check"></i><b>7.2</b> Profundidad</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>8</b> <span style="color:blue"><strong>ARIMA</strong></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="magnitud-1.html"><a href="magnitud-1.html"><i class="fa fa-check"></i><b>8.1</b> Magnitud</a></li>
+<li class="chapter" data-level="8.2" data-path="profundidad-1.html"><a href="profundidad-1.html"><i class="fa fa-check"></i><b>8.2</b> Profundidad</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="algoritmo-facebooks-prophet.html"><a href="algoritmo-facebooks-prophet.html"><i class="fa fa-check"></i><b>9</b> <span style="color:blue"><strong>Algoritmo Facebook’s Prophet</strong></span></a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="magnitud-2.html"><a href="magnitud-2.html"><i class="fa fa-check"></i><b>9.1</b> Magnitud</a></li>
+<li class="chapter" data-level="9.2" data-path="profundidad-2.html"><a href="profundidad-2.html"><i class="fa fa-check"></i><b>9.2</b> Profundidad</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="modelo-elman.html"><a href="modelo-elman.html"><i class="fa fa-check"></i><b>10</b> <span style="color:blue"><strong>Modelo Elman</strong></span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="modelo-elman-profundidad.html"><a href="modelo-elman-profundidad.html"><i class="fa fa-check"></i><b>10.1</b> Modelo Elman Profundidad</a></li>
+<li class="chapter" data-level="10.2" data-path="modelo-elman-magnitud.html"><a href="modelo-elman-magnitud.html"><i class="fa fa-check"></i><b>10.2</b> Modelo Elman Magnitud</a></li>
+<li class="chapter" data-level="10.3" data-path="modelo-jordan-profundidad.html"><a href="modelo-jordan-profundidad.html"><i class="fa fa-check"></i><b>10.3</b> Modelo Jordan Profundidad</a></li>
+<li class="chapter" data-level="10.4" data-path="modelo-jordan-magnitud.html"><a href="modelo-jordan-magnitud.html"><i class="fa fa-check"></i><b>10.4</b> Modelo Jordan Magnitud</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i><b>11</b> <span style="color:blue"><strong>Bibliografía</strong></span></a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis de la sismología en el municipio de Santos, Santander</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="recurso-técnico-de-información-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> <span style="color:darkgreen"><strong>Recurso Técnico de información:</strong></span><a href="recurso-técnico-de-información-1.html#recurso-técnico-de-información-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los datos para efectuar esta investigación se obtuvieron del Servicio Geológico Colombiano (SGC) a través del Catálogo de Sismicidad en formato Excel correspondiente al período desde el 28 de febrero de 2011 hasta el 28 de febrero de 2018. Esta base de datos contiene 33.848 registros.</p>
+<p>El SGC es una entidad pública adscrita al Ministerio de Minas y Energía de Colombia, la cual tiene como función principal la investigación geocientífica del territorio colombiano para generar conocimiento sobre los recursos naturales y los riesgos geológicos del país. Teniendo en cuenta lo anterior, se eligió como fuente de información, ya que, es una fuente confiable y verificada que garantiza la precisión y completitud de los datos.</p>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="información-sismos-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="contenido-de-la-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown/edit/main/inst/examples/01-introduction.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf", "bookdown.epub", "bookdown.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

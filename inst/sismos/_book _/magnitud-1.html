@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.1 Magnitud | Análisis de la sismología en el municipio de Santos, Santander</title>
+  <meta name="description" content="Base de datos de sismos" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.1 Magnitud | Análisis de la sismología en el municipio de Santos, Santander" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bookdown.org/yihui/bookdown//images/cover.jpg" />
+  <meta property="og:description" content="Base de datos de sismos" />
+  <meta name="github-repo" content="rstudio/bookdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.1 Magnitud | Análisis de la sismología en el municipio de Santos, Santander" />
+  
+  <meta name="twitter:description" content="Base de datos de sismos" />
+  <meta name="twitter:image" content="https://bookdown.org/yihui/bookdown//images/cover.jpg" />
+
+<meta name="author" content="Grupo 1: Victoria Escobar - Wladimir Avila - Mario García" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="arima.html"/>
+<link rel="next" href="profundidad-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Authoring Books with R Markdown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <span style="color:blue"><strong>Información Sismos</strong></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="recurso-técnico-de-información.html"><a href="recurso-técnico-de-información.html"><i class="fa fa-check"></i><b>1.1</b> <span style="color:darkgreen"><strong>Recurso Técnico de información:</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="2" data-path="contenido-de-la-data.html"><a href="contenido-de-la-data.html"><i class="fa fa-check"></i><b>2</b> <span style="color:blue"><strong>Contenido de la Data</strong></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html"><i class="fa fa-check"></i><b>2.1</b> <span style="color:darkgreen"><strong>Observación de los datos</strong></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#el-tiempo-universal-coordinado-hora_utc"><i class="fa fa-check"></i><b>2.1.1</b> <strong>El Tiempo Universal Coordinado (HORA_UTC):</strong></a></li>
+<li class="chapter" data-level="2.1.2" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#magnitud-local-ml"><i class="fa fa-check"></i><b>2.1.2</b> <strong>Magnitud Local (Ml):</strong></a></li>
+<li class="chapter" data-level="2.1.3" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#magnitud-de-momento-mw"><i class="fa fa-check"></i><b>2.1.3</b> <strong>Magnitud de momento (Mw):</strong></a></li>
+<li class="chapter" data-level="2.1.4" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#root-mean-square-rms"><i class="fa fa-check"></i><b>2.1.4</b> <strong>Root Mean Square (RMS):</strong></a></li>
+<li class="chapter" data-level="2.1.5" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#brecha-sísmica-gap"><i class="fa fa-check"></i><b>2.1.5</b> <strong>Brecha sísmica (GAP):</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="descripción-datos.html"><a href="descripción-datos.html"><i class="fa fa-check"></i><b>2.2</b> <span style="color:darkgreen"><strong>Descripción Datos</strong> </span></a></li>
+<li class="chapter" data-level="2.3" data-path="imputar-datos.html"><a href="imputar-datos.html"><i class="fa fa-check"></i><b>2.3</b> <span style="color:darkgreen"><strong>Imputar Datos</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="variable-numéricas.html"><a href="variable-numéricas.html"><i class="fa fa-check"></i><b>3</b> <span style="color:blue"><strong>Variable Numéricas</strong></span></a></li>
+<li class="chapter" data-level="4" data-path="variable-serie-tiempo.html"><a href="variable-serie-tiempo.html"><i class="fa fa-check"></i><b>4</b> <span style="color:darkgreen"><strong>Variable Serie Tiempo</strong> </span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gráfica-de-sismos.html"><a href="gráfica-de-sismos.html"><i class="fa fa-check"></i><b>4.1</b> Gráfica de sismos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="holt-winter.html"><a href="holt-winter.html"><i class="fa fa-check"></i><b>5</b> <span style="color:blue"><strong>Holt-Winter</strong></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="magnitud.html"><a href="magnitud.html"><i class="fa fa-check"></i><b>5.1</b> Magnitud</a></li>
+<li class="chapter" data-level="5.2" data-path="profundidad.html"><a href="profundidad.html"><i class="fa fa-check"></i><b>5.2</b> Profundidad</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> <span style="color:blue"><strong>ARIMA</strong></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="magnitud-1.html"><a href="magnitud-1.html"><i class="fa fa-check"></i><b>6.1</b> Magnitud</a></li>
+<li class="chapter" data-level="6.2" data-path="profundidad-1.html"><a href="profundidad-1.html"><i class="fa fa-check"></i><b>6.2</b> Profundidad</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="algoritmo-facebooks-prophet.html"><a href="algoritmo-facebooks-prophet.html"><i class="fa fa-check"></i><b>7</b> <span style="color:blue"><strong>Algoritmo Facebook’s Prophet</strong></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="magnitud-2.html"><a href="magnitud-2.html"><i class="fa fa-check"></i><b>7.1</b> Magnitud</a></li>
+<li class="chapter" data-level="7.2" data-path="profundidad-2.html"><a href="profundidad-2.html"><i class="fa fa-check"></i><b>7.2</b> Profundidad</a></li>
+<li class="chapter" data-level="7.3" data-path="gráfica-combinada-magnitud.html"><a href="gráfica-combinada-magnitud.html"><i class="fa fa-check"></i><b>7.3</b> Gráfica combinada Magnitud</a></li>
+<li class="chapter" data-level="7.4" data-path="gráfica-combinada-pronóstico.html"><a href="gráfica-combinada-pronóstico.html"><i class="fa fa-check"></i><b>7.4</b> Gráfica combinada Pronóstico</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modelo-elman.html"><a href="modelo-elman.html"><i class="fa fa-check"></i><b>8</b> <span style="color:blue"><strong>Modelo Elman</strong></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="modelo-elman-profundidad.html"><a href="modelo-elman-profundidad.html"><i class="fa fa-check"></i><b>8.1</b> Modelo Elman Profundidad</a></li>
+<li class="chapter" data-level="8.2" data-path="modelo-elman-magnitud.html"><a href="modelo-elman-magnitud.html"><i class="fa fa-check"></i><b>8.2</b> Modelo Elman Magnitud</a></li>
+<li class="chapter" data-level="8.3" data-path="modelo-jordan-profundidad.html"><a href="modelo-jordan-profundidad.html"><i class="fa fa-check"></i><b>8.3</b> Modelo Jordan Profundidad</a></li>
+<li class="chapter" data-level="8.4" data-path="modelo-jordan-magnitud.html"><a href="modelo-jordan-magnitud.html"><i class="fa fa-check"></i><b>8.4</b> Modelo Jordan Magnitud</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i><b>9</b> <span style="color:blue"><strong>Bibliografía</strong></span></a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis de la sismología en el municipio de Santos, Santander</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="magnitud-1" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Magnitud<a href="magnitud-1.html#magnitud-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="magnitud-1.html#cb82-1" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
+<span id="cb82-2"><a href="magnitud-1.html#cb82-2" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="magnitud-1.html#cb82-3" tabindex="-1"></a>indice.ts2 <span class="ot">&lt;-</span> <span class="fu">head</span>(indice.ts, <span class="sc">-</span><span class="dv">30</span>)</span>
+<span id="cb82-4"><a href="magnitud-1.html#cb82-4" tabindex="-1"></a></span>
+<span id="cb82-5"><a href="magnitud-1.html#cb82-5" tabindex="-1"></a><span class="co"># Ajustar el modelo ARIMA</span></span>
+<span id="cb82-6"><a href="magnitud-1.html#cb82-6" tabindex="-1"></a>modelo_magnitud_arima <span class="ot">&lt;-</span> <span class="fu">auto.arima</span>(indice.ts2)</span>
+<span id="cb82-7"><a href="magnitud-1.html#cb82-7" tabindex="-1"></a></span>
+<span id="cb82-8"><a href="magnitud-1.html#cb82-8" tabindex="-1"></a><span class="co"># Resumen del modelo</span></span>
+<span id="cb82-9"><a href="magnitud-1.html#cb82-9" tabindex="-1"></a><span class="fu">summary</span>(modelo_magnitud_arima)</span></code></pre></div>
+<pre><code>## Series: indice.ts2 
+## ARIMA(2,1,2) 
+## 
+## Coefficients:
+##           ar1      ar2      ma1      ma2
+##       -0.9609  -0.0635  -0.0565  -0.9072
+## s.e.   0.1022   0.0567   0.0878   0.0865
+## 
+## sigma^2 = 0.3394:  log likelihood = -294.06
+## AIC=598.11   AICc=598.3   BIC=617.18
+## 
+## Training set error measures:
+##                       ME      RMSE      MAE       MPE     MAPE MASE
+## Training set -0.04803261 0.5782438 0.458386 -5.474935 16.43939  NaN
+##                       ACF1
+## Training set -0.0008658055</code></pre>
+<p>El modelo ARIMA(2,1,2) ajustado a la serie temporal indice.ts2 de (magnitud de los sismos) presenta los siguientes coeficientes estimados: AR1 (-0.9609), AR2 (-0.0635), MA1 (-0.0565) y MA2 (-0.9072), todos con errores estándar que sugieren una precisión razonable en las estimaciones. Las medidas de error en el conjunto de entrenamiento incluyen un ME de -0.048, un RMSE de 0.578, y un MAE de 0.458, indicando un ajuste razonable del modelo con errores moderadamente bajos. El MAPE de 16.44% sugiere que el modelo tiene una precisión aceptable en términos relativos, aunque no excelente.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="magnitud-1.html#cb84-1" tabindex="-1"></a><span class="co"># Hacer predicciones para los próximos 4 meses utilizando la función forecast del paquete forecast</span></span>
+<span id="cb84-2"><a href="magnitud-1.html#cb84-2" tabindex="-1"></a>pronostico_magnitud_arima <span class="ot">&lt;-</span> forecast<span class="sc">::</span><span class="fu">forecast</span>(modelo_magnitud_arima, <span class="at">h=</span><span class="dv">30</span>)</span>
+<span id="cb84-3"><a href="magnitud-1.html#cb84-3" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="magnitud-1.html#cb84-4" tabindex="-1"></a><span class="co"># Graficar las predicciones</span></span>
+<span id="cb84-5"><a href="magnitud-1.html#cb84-5" tabindex="-1"></a><span class="fu">plot</span>(pronostico_magnitud_arima, <span class="at">main=</span><span class="st">&quot;Pronóstico de Magnitud de Sismos&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Magnitud&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Tiempo&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-26-1.svg" width="672" />
+Se presenta la serie temporal de la magnitud de los sismos desde principios de 2017 hasta principios de 2018, junto con el pronóstico de magnitud para los últimos 30 días del período analizado. La línea azul representa las predicciones del modelo Prophet, mientras que las áreas sombreadas en gris claro y oscuro representan los intervalos de confianza al 80% y 95%, respectivamente, las bandas de confianza más amplias hacia el final del período indican una mayor incertidumbre en las predicciones futuras.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="magnitud-1.html#cb85-1" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
+<span id="cb85-2"><a href="magnitud-1.html#cb85-2" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb85-3"><a href="magnitud-1.html#cb85-3" tabindex="-1"></a></span>
+<span id="cb85-4"><a href="magnitud-1.html#cb85-4" tabindex="-1"></a><span class="co"># Ajustar el modelo ARIMA automáticamente</span></span>
+<span id="cb85-5"><a href="magnitud-1.html#cb85-5" tabindex="-1"></a>modelo_magnitud_arima <span class="ot">&lt;-</span> <span class="fu">auto.arima</span>(sismo_4_max_completo_filtrado<span class="sc">$</span>MAX_MAGNITUD_ML)</span>
+<span id="cb85-6"><a href="magnitud-1.html#cb85-6" tabindex="-1"></a></span>
+<span id="cb85-7"><a href="magnitud-1.html#cb85-7" tabindex="-1"></a><span class="co"># Mostrar el resumen del modelo</span></span>
+<span id="cb85-8"><a href="magnitud-1.html#cb85-8" tabindex="-1"></a><span class="fu">summary</span>(modelo_magnitud_arima)</span></code></pre></div>
+<pre><code>## Series: sismo_4_max_completo_filtrado$MAX_MAGNITUD_ML 
+## ARIMA(2,1,2) 
+## 
+## Coefficients:
+##           ar1      ar2      ma1      ma2
+##       -0.9673  -0.0619  -0.0484  -0.9152
+## s.e.   0.0989   0.0546   0.0848   0.0836
+## 
+## sigma^2 = 0.3366:  log likelihood = -318.87
+## AIC=647.75   AICc=647.92   BIC=667.25
+## 
+## Training set error measures:
+##                       ME      RMSE       MAE      MPE    MAPE      MASE
+## Training set -0.04863675 0.5761563 0.4552714 -5.54113 16.4699 0.7116663
+##                      ACF1
+## Training set -0.001168494</code></pre>
+<p>El modelo ARIMA de magnitud muestra un ajuste razonable, aunque con ciertas limitaciones en la predicción debido a la variabilidad de los datos sísmicos.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="magnitud-1.html#cb87-1" tabindex="-1"></a><span class="co"># Gráficos de diagnóstico</span></span>
+<span id="cb87-2"><a href="magnitud-1.html#cb87-2" tabindex="-1"></a><span class="fu">tsdiag</span>(modelo_magnitud_arima)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-28-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="magnitud-1.html#cb88-1" tabindex="-1"></a><span class="co"># Gráfico de los residuos</span></span>
+<span id="cb88-2"><a href="magnitud-1.html#cb88-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">residuals</span>(modelo_magnitud_arima), <span class="at">main=</span><span class="st">&quot;Residuos del Modelo ARIMA&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-28-2.svg" width="672" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="magnitud-1.html#cb89-1" tabindex="-1"></a><span class="co"># ACF de los residuos</span></span>
+<span id="cb89-2"><a href="magnitud-1.html#cb89-2" tabindex="-1"></a><span class="fu">Acf</span>(<span class="fu">residuals</span>(modelo_magnitud_arima), <span class="at">main=</span><span class="st">&quot;ACF de los Residuos del Modelo ARIMA&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-28-3.svg" width="672" />
+Las dos gráficas indican que el modelo ARIMA está bien especificado, ya que los residuos no presentan autocorrelación significativa y están distribuidos de manera aleatoria alrededor de cero. Sin embargo, la presencia de algunos picos sugiere que podría haber eventos atípicos o anomalías pero dado que en los sismos es normal, no se consideran datos atípicos.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="magnitud-1.html#cb90-1" tabindex="-1"></a><span class="co"># Diagnóstico del modelo ARIMA: revisión de residuos</span></span>
+<span id="cb90-2"><a href="magnitud-1.html#cb90-2" tabindex="-1"></a><span class="fu">checkresiduals</span>(modelo_magnitud_arima)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-29-1.svg" width="672" /></p>
+<pre><code>## 
+##  Ljung-Box test
+## 
+## data:  Residuals from ARIMA(2,1,2)
+## Q* = 3.2928, df = 6, p-value = 0.7713
+## 
+## Model df: 4.   Total lags used: 10</code></pre>
+<p>La gráfica compuesta presenta un análisis de los residuos del modelo ARIMA(2,1,2) ajustado para predecir la magnitud de los sismos. La serie temporal de los residuos (parte superior) muestra que los residuos están distribuidos alrededor de cero sin patrones evidentes, aunque con algunos picos ocasionales. La función de autocorrelación (ACF) de los residuos (parte inferior izquierda) revela que casi todos los valores de autocorrelación caen dentro de las bandas de confianza, indicando que no hay autocorrelación significativa en los residuos. Esto sugiere que el modelo ha capturado bien las dependencias temporales en los datos. En conjunto, estos análisis indican que el modelo ARIMA(2,1,2) es adecuado, ya que los residuos no presentan autocorrelación significativa y siguen una distribución aproximadamente normal, aunque hay algunos picos que podrían ser eventos atípicos.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="magnitud-1.html#cb92-1" tabindex="-1"></a><span class="co"># Calcular pronósticos dentro de la muestra</span></span>
+<span id="cb92-2"><a href="magnitud-1.html#cb92-2" tabindex="-1"></a>fitted_values <span class="ot">&lt;-</span> <span class="fu">fitted</span>(modelo_magnitud_arima)</span>
+<span id="cb92-3"><a href="magnitud-1.html#cb92-3" tabindex="-1"></a>actual_values <span class="ot">&lt;-</span> sismo_4_max_completo_filtrado<span class="sc">$</span>MAX_MAGNITUD_ML</span>
+<span id="cb92-4"><a href="magnitud-1.html#cb92-4" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="magnitud-1.html#cb92-5" tabindex="-1"></a><span class="co"># Calcular errores</span></span>
+<span id="cb92-6"><a href="magnitud-1.html#cb92-6" tabindex="-1"></a>errors <span class="ot">&lt;-</span> actual_values <span class="sc">-</span> fitted_values</span>
+<span id="cb92-7"><a href="magnitud-1.html#cb92-7" tabindex="-1"></a></span>
+<span id="cb92-8"><a href="magnitud-1.html#cb92-8" tabindex="-1"></a><span class="co"># Calcular métricas de error</span></span>
+<span id="cb92-9"><a href="magnitud-1.html#cb92-9" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(errors<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb92-10"><a href="magnitud-1.html#cb92-10" tabindex="-1"></a>mae <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(errors))</span>
+<span id="cb92-11"><a href="magnitud-1.html#cb92-11" tabindex="-1"></a>mape <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(errors <span class="sc">/</span> actual_values)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb92-12"><a href="magnitud-1.html#cb92-12" tabindex="-1"></a></span>
+<span id="cb92-13"><a href="magnitud-1.html#cb92-13" tabindex="-1"></a><span class="co"># Mostrar las métricas de error</span></span>
+<span id="cb92-14"><a href="magnitud-1.html#cb92-14" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;RMSE:&quot;</span>, rmse, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## RMSE: 0.5761563</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="magnitud-1.html#cb94-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;MAE:&quot;</span>, mae, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## MAE: 0.4552714</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="magnitud-1.html#cb96-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;MAPE:&quot;</span>, mape, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## MAPE: 16.4699 %</code></pre>
+<p>En conjunto, estas métricas sugieren que el modelo ARIMA(2,1,2) tiene un rendimiento razonablemente bueno para predecir la magnitud de los sismos.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="magnitud-1.html#cb98-1" tabindex="-1"></a><span class="co"># Prueba de Ljung-Box para autocorrelaciones en los residuos</span></span>
+<span id="cb98-2"><a href="magnitud-1.html#cb98-2" tabindex="-1"></a><span class="fu">Box.test</span>(<span class="fu">residuals</span>(modelo_magnitud_arima), <span class="at">lag=</span><span class="dv">10</span>, <span class="at">type=</span><span class="st">&quot;Ljung-Box&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Box-Ljung test
+## 
+## data:  residuals(modelo_magnitud_arima)
+## X-squared = 3.2928, df = 10, p-value = 0.9737</code></pre>
+<p>Los residuos se consideran independientes, lo que sugiere que el modelo ARIMA ha capturado adecuadamente las dependencias temporales en los datos.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="magnitud-1.html#cb100-1" tabindex="-1"></a><span class="co"># Residuos del modelo</span></span>
+<span id="cb100-2"><a href="magnitud-1.html#cb100-2" tabindex="-1"></a>residuales_magnitud_arima <span class="ot">&lt;-</span> <span class="fu">residuals</span>(modelo_magnitud_arima)</span>
+<span id="cb100-3"><a href="magnitud-1.html#cb100-3" tabindex="-1"></a></span>
+<span id="cb100-4"><a href="magnitud-1.html#cb100-4" tabindex="-1"></a><span class="co"># Prueba de Shapiro-Wilk para normalidad</span></span>
+<span id="cb100-5"><a href="magnitud-1.html#cb100-5" tabindex="-1"></a><span class="fu">shapiro.test</span>(residuales_magnitud_arima)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuales_magnitud_arima
+## W = 0.96371, p-value = 6.991e-08</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="magnitud-1.html#cb102-1" tabindex="-1"></a><span class="co"># Prueba de Ljung-Box para autocorrelación</span></span>
+<span id="cb102-2"><a href="magnitud-1.html#cb102-2" tabindex="-1"></a><span class="fu">Box.test</span>(residuales_magnitud_arima, <span class="at">type=</span><span class="st">&quot;Ljung-Box&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Box-Ljung test
+## 
+## data:  residuales_magnitud_arima
+## X-squared = 0.00050384, df = 1, p-value = 0.9821</code></pre>
+<p>Los resultados de los dos tests muestran que los residuos son independientes, lo que indica que el modelo ha capturado adecuadamente las dependencias temporales en los datos.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="arima.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="profundidad-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown/edit/main/inst/examples/01-introduction.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf", "bookdown.epub", "bookdown.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

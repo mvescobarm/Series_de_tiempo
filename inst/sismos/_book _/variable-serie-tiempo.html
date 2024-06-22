@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Variable Serie Tiempo  | Análisis de la sismología en el municipio de Santos, Santander</title>
+  <meta name="description" content="Base de datos de sismos" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Variable Serie Tiempo  | Análisis de la sismología en el municipio de Santos, Santander" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bookdown.org/yihui/bookdown//images/cover.jpg" />
+  <meta property="og:description" content="Base de datos de sismos" />
+  <meta name="github-repo" content="rstudio/bookdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Variable Serie Tiempo  | Análisis de la sismología en el municipio de Santos, Santander" />
+  
+  <meta name="twitter:description" content="Base de datos de sismos" />
+  <meta name="twitter:image" content="https://bookdown.org/yihui/bookdown//images/cover.jpg" />
+
+<meta name="author" content="Grupo 1: Victoria Escobar - Wladimir Avila - Mario García" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="variable-numéricas.html"/>
+<link rel="next" href="gráfica-de-sismos.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Authoring Books with R Markdown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <span style="color:blue"><strong>Información Sismos</strong></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="recurso-técnico-de-información.html"><a href="recurso-técnico-de-información.html"><i class="fa fa-check"></i><b>1.1</b> <span style="color:darkgreen"><strong>Recurso Técnico de información:</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="2" data-path="contenido-de-la-data.html"><a href="contenido-de-la-data.html"><i class="fa fa-check"></i><b>2</b> <span style="color:blue"><strong>Contenido de la Data</strong></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html"><i class="fa fa-check"></i><b>2.1</b> <span style="color:darkgreen"><strong>Observación de los datos</strong></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#el-tiempo-universal-coordinado-hora_utc"><i class="fa fa-check"></i><b>2.1.1</b> <strong>El Tiempo Universal Coordinado (HORA_UTC):</strong></a></li>
+<li class="chapter" data-level="2.1.2" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#magnitud-local-ml"><i class="fa fa-check"></i><b>2.1.2</b> <strong>Magnitud Local (Ml):</strong></a></li>
+<li class="chapter" data-level="2.1.3" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#magnitud-de-momento-mw"><i class="fa fa-check"></i><b>2.1.3</b> <strong>Magnitud de momento (Mw):</strong></a></li>
+<li class="chapter" data-level="2.1.4" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#root-mean-square-rms"><i class="fa fa-check"></i><b>2.1.4</b> <strong>Root Mean Square (RMS):</strong></a></li>
+<li class="chapter" data-level="2.1.5" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#brecha-sísmica-gap"><i class="fa fa-check"></i><b>2.1.5</b> <strong>Brecha sísmica (GAP):</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="descripción-datos.html"><a href="descripción-datos.html"><i class="fa fa-check"></i><b>2.2</b> <span style="color:darkgreen"><strong>Descripción Datos</strong> </span></a></li>
+<li class="chapter" data-level="2.3" data-path="imputar-datos.html"><a href="imputar-datos.html"><i class="fa fa-check"></i><b>2.3</b> <span style="color:darkgreen"><strong>Imputar Datos</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="variable-numéricas.html"><a href="variable-numéricas.html"><i class="fa fa-check"></i><b>3</b> <span style="color:blue"><strong>Variable Numéricas</strong></span></a></li>
+<li class="chapter" data-level="4" data-path="variable-serie-tiempo.html"><a href="variable-serie-tiempo.html"><i class="fa fa-check"></i><b>4</b> <span style="color:darkgreen"><strong>Variable Serie Tiempo</strong> </span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gráfica-de-sismos.html"><a href="gráfica-de-sismos.html"><i class="fa fa-check"></i><b>4.1</b> Gráfica de sismos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="holt-winter.html"><a href="holt-winter.html"><i class="fa fa-check"></i><b>5</b> <span style="color:blue"><strong>Holt-Winter</strong></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="magnitud.html"><a href="magnitud.html"><i class="fa fa-check"></i><b>5.1</b> Magnitud</a></li>
+<li class="chapter" data-level="5.2" data-path="profundidad.html"><a href="profundidad.html"><i class="fa fa-check"></i><b>5.2</b> Profundidad</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> <span style="color:blue"><strong>ARIMA</strong></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="magnitud-1.html"><a href="magnitud-1.html"><i class="fa fa-check"></i><b>6.1</b> Magnitud</a></li>
+<li class="chapter" data-level="6.2" data-path="profundidad-1.html"><a href="profundidad-1.html"><i class="fa fa-check"></i><b>6.2</b> Profundidad</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="algoritmo-facebooks-prophet.html"><a href="algoritmo-facebooks-prophet.html"><i class="fa fa-check"></i><b>7</b> <span style="color:blue"><strong>Algoritmo Facebook’s Prophet</strong></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="magnitud-2.html"><a href="magnitud-2.html"><i class="fa fa-check"></i><b>7.1</b> Magnitud</a></li>
+<li class="chapter" data-level="7.2" data-path="profundidad-2.html"><a href="profundidad-2.html"><i class="fa fa-check"></i><b>7.2</b> Profundidad</a></li>
+<li class="chapter" data-level="7.3" data-path="gráfica-combinada-magnitud.html"><a href="gráfica-combinada-magnitud.html"><i class="fa fa-check"></i><b>7.3</b> Gráfica combinada Magnitud</a></li>
+<li class="chapter" data-level="7.4" data-path="gráfica-combinada-pronóstico.html"><a href="gráfica-combinada-pronóstico.html"><i class="fa fa-check"></i><b>7.4</b> Gráfica combinada Pronóstico</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modelo-elman.html"><a href="modelo-elman.html"><i class="fa fa-check"></i><b>8</b> <span style="color:blue"><strong>Modelo Elman</strong></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="modelo-elman-profundidad.html"><a href="modelo-elman-profundidad.html"><i class="fa fa-check"></i><b>8.1</b> Modelo Elman Profundidad</a></li>
+<li class="chapter" data-level="8.2" data-path="modelo-elman-magnitud.html"><a href="modelo-elman-magnitud.html"><i class="fa fa-check"></i><b>8.2</b> Modelo Elman Magnitud</a></li>
+<li class="chapter" data-level="8.3" data-path="modelo-jordan-profundidad.html"><a href="modelo-jordan-profundidad.html"><i class="fa fa-check"></i><b>8.3</b> Modelo Jordan Profundidad</a></li>
+<li class="chapter" data-level="8.4" data-path="modelo-jordan-magnitud.html"><a href="modelo-jordan-magnitud.html"><i class="fa fa-check"></i><b>8.4</b> Modelo Jordan Magnitud</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i><b>9</b> <span style="color:blue"><strong>Bibliografía</strong></span></a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis de la sismología en el municipio de Santos, Santander</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="variable-serie-tiempo" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> <span style="color:darkgreen"><strong>Variable Serie Tiempo</strong> </span><a href="variable-serie-tiempo.html#variable-serie-tiempo" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Análisis de la Data</strong></p>
+<p>A continuación se se seleccionan las variables de análisis para el presente ejercicio:</p>
+<p>Profundidad: esta variable se selcciono dado que representa la profundidad del foco sísmico y este influye en cómo se siente un terremoto en la superficie, los terremotos superficiales, son aquellos que tienen un foco a menos de 70 km de profundidad, estos generalmente causan mas daño ya que la energía que liberan no se dispera tanto antes de llegar a la superficie.</p>
+<p>Magnitud: la magnitud en Colombia se reorta utilizando la escala de Richter, esta medida permite conocer cuanta es la energía liberada por un sismo.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="variable-serie-tiempo.html#cb13-1" tabindex="-1"></a>sismo_3 <span class="ot">&lt;-</span> sismo_2 <span class="co"># copiamos data2</span></span>
+<span id="cb13-2"><a href="variable-serie-tiempo.html#cb13-2" tabindex="-1"></a>sismo_3 <span class="ot">&lt;-</span> sismo_3 [, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>)] <span class="co"># data con 3 variables 1:fecha, 5:profundidad, 6:magnitud</span></span>
+<span id="cb13-3"><a href="variable-serie-tiempo.html#cb13-3" tabindex="-1"></a><span class="co">#sismo_3$fecha_hora &lt;- paste(sismo_3$FECHA,&quot; &quot;,sismo_3$HORA_UTC)# unir columnas 1 y 2</span></span>
+<span id="cb13-4"><a href="variable-serie-tiempo.html#cb13-4" tabindex="-1"></a><span class="co">#sismo_3$fecha_hora &lt;- as.POSIXct(sismo_3$fecha_hora) # convertir a tipo date time</span></span>
+<span id="cb13-5"><a href="variable-serie-tiempo.html#cb13-5" tabindex="-1"></a><span class="co">#sismo_3$FECHA_UNIX &lt;- as.POSIXct(sismo_3$FECHA)</span></span>
+<span id="cb13-6"><a href="variable-serie-tiempo.html#cb13-6" tabindex="-1"></a>sismo_3 <span class="ot">&lt;-</span> sismo_3[<span class="fu">order</span>(sismo_3<span class="sc">$</span>FECHA), ] <span class="co">#ordenamo sismo_3 de menor a mayor</span></span>
+<span id="cb13-7"><a href="variable-serie-tiempo.html#cb13-7" tabindex="-1"></a><span class="fu">head</span>(sismo_3,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   FECHA      PROFUNDIDAD MAGNITUD_ML
+##   &lt;date&gt;           &lt;dbl&gt;       &lt;dbl&gt;
+## 1 2011-02-28        134.         1.9
+## 2 2011-02-28        144.         3.5</code></pre>
+<p>Se agrupan las fechas para obtener un dato único por día, con relación a la magnitud se decidió calcular el maximo de cada día para conocer el sismo que libera la mayor cantidad de energía y con relación a la profundidad se decidió calcular el minimo con el fin de determianr el sismo que esta mas cerca a la superficie y puede causar mas daño.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="variable-serie-tiempo.html#cb15-1" tabindex="-1"></a>sismo_4_max <span class="ot">&lt;-</span> sismo_3 <span class="sc">%&gt;%</span> <span class="co"># Agrupamos por fecha y obtenemos el máximo de la magnitud para cada fecha</span></span>
+<span id="cb15-2"><a href="variable-serie-tiempo.html#cb15-2" tabindex="-1"></a>  <span class="fu">group_by</span>(FECHA) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="variable-serie-tiempo.html#cb15-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MAX_MAGNITUD_ML =</span> <span class="fu">max</span>(MAGNITUD_ML),</span>
+<span id="cb15-4"><a href="variable-serie-tiempo.html#cb15-4" tabindex="-1"></a>            <span class="at">MIN_PROFUNDIDAD =</span> <span class="fu">min</span>(PROFUNDIDAD))</span>
+<span id="cb15-5"><a href="variable-serie-tiempo.html#cb15-5" tabindex="-1"></a><span class="fu">head</span>(sismo_4_max, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   FECHA      MAX_MAGNITUD_ML MIN_PROFUNDIDAD
+##   &lt;date&gt;               &lt;dbl&gt;           &lt;dbl&gt;
+## 1 2011-02-28             3.5            134.
+## 2 2011-03-01             2.9            136.</code></pre>
+<p>Dado que no hay información para todos los días del año entre el 28 de febrero de 2011 y el 28 de febrero de 2018 primero se creo un data frame con todas las fechas en ese rango y posteriormente los datos faltantes en las variables MAGNITUD Y PROFUNCIDAD se llenaron de la siguiente forma:</p>
+<p>Profundidad: la profundidad se decio llenar con la media que es 145.0610908. Esta decición esta fundamentada en que la revisar la gráfica de series de tiempo, si se llenaran con profundidad 0 generaria mucho ruido y no permitiria visualizar adecuadamente los simso que realmente presentan una profundida baja y cercana a la superficie.</p>
+<p>Magnitud: la magnitud se decidio llenar con 0.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="variable-serie-tiempo.html#cb17-1" tabindex="-1"></a><span class="co"># Crear un data frame con todas las fechas en el rango deseado</span></span>
+<span id="cb17-2"><a href="variable-serie-tiempo.html#cb17-2" tabindex="-1"></a>todas_las_fechas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">FECHA =</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">&quot;2011-02-28&quot;</span>), <span class="fu">as.Date</span>(<span class="st">&quot;2018-02-28&quot;</span>), <span class="at">by =</span> <span class="st">&quot;day&quot;</span>))</span>
+<span id="cb17-3"><a href="variable-serie-tiempo.html#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="variable-serie-tiempo.html#cb17-4" tabindex="-1"></a>sismo_4_max_completo <span class="ot">&lt;-</span> todas_las_fechas <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="variable-serie-tiempo.html#cb17-5" tabindex="-1"></a>  <span class="fu">left_join</span>(sismo_4_max, <span class="at">by =</span> <span class="st">&quot;FECHA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="variable-serie-tiempo.html#cb17-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MAX_MAGNITUD_ML =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(MAX_MAGNITUD_ML), <span class="dv">0</span>, MAX_MAGNITUD_ML),</span>
+<span id="cb17-7"><a href="variable-serie-tiempo.html#cb17-7" tabindex="-1"></a>         <span class="at">MIN_PROFUNDIDAD =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(MIN_PROFUNDIDAD), <span class="fl">145.0610908</span>, MIN_PROFUNDIDAD))</span>
+<span id="cb17-8"><a href="variable-serie-tiempo.html#cb17-8" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="variable-serie-tiempo.html#cb17-9" tabindex="-1"></a><span class="co"># Filtrar desde el 28 de febrero de 2017 hasta el 28 de febrero de 2018</span></span>
+<span id="cb17-10"><a href="variable-serie-tiempo.html#cb17-10" tabindex="-1"></a>sismo_4_max_completo_filtrado <span class="ot">&lt;-</span> sismo_4_max_completo <span class="sc">%&gt;%</span></span>
+<span id="cb17-11"><a href="variable-serie-tiempo.html#cb17-11" tabindex="-1"></a>  <span class="fu">filter</span>(FECHA <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">&quot;2017-02-28&quot;</span>) <span class="sc">&amp;</span> FECHA <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">&quot;2018-02-28&quot;</span>))</span>
+<span id="cb17-12"><a href="variable-serie-tiempo.html#cb17-12" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="variable-serie-tiempo.html#cb17-13" tabindex="-1"></a><span class="fu">head</span>(sismo_4_max_completo_filtrado, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##        FECHA MAX_MAGNITUD_ML MIN_PROFUNDIDAD
+## 1 2017-02-28             3.9           136.8
+## 2 2017-03-01             2.6           139.6</code></pre>
+<p>Se revisa que el número de filas concurde para comprobar que se encuentran todos los días entre el 28 de febrero de 2011 y el 28 de febrero de 2018.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="variable-serie-tiempo.html#cb19-1" tabindex="-1"></a><span class="fu">nrow</span>(todas_las_fechas)</span></code></pre></div>
+<pre><code>## [1] 2558</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="variable-serie-tiempo.html#cb21-1" tabindex="-1"></a><span class="fu">nrow</span>(sismo_4_max_completo_filtrado)</span></code></pre></div>
+<pre><code>## [1] 366</code></pre>
+<p><strong>Serie de tiempo Magnitud</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="variable-serie-tiempo.html#cb23-1" tabindex="-1"></a>indice.ts <span class="ot">&lt;-</span> <span class="fu">ts</span>(sismo_4_max_completo_filtrado<span class="sc">$</span>MAX_MAGNITUD_ML,<span class="at">start =</span> <span class="fu">c</span>(<span class="dv">2017</span>,<span class="dv">2</span>),<span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2018</span>,<span class="dv">2</span>), <span class="at">frequency =</span> <span class="dv">365</span>)</span>
+<span id="cb23-2"><a href="variable-serie-tiempo.html#cb23-2" tabindex="-1"></a><span class="co">#head(indice.ts,10) </span></span>
+<span id="cb23-3"><a href="variable-serie-tiempo.html#cb23-3" tabindex="-1"></a><span class="fu">head</span>(indice.ts)</span></code></pre></div>
+<pre><code>## Time Series:
+## Start = c(2017, 2) 
+## End = c(2017, 7) 
+## Frequency = 365 
+## [1] 3.9 2.6 3.7 3.7 2.7 1.7</code></pre>
+<p><strong>Datos de la serie</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="variable-serie-tiempo.html#cb25-1" tabindex="-1"></a><span class="st">&quot;Tipo ts&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;Tipo ts&quot;</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="variable-serie-tiempo.html#cb27-1" tabindex="-1"></a><span class="fu">class</span>(indice.ts)</span></code></pre></div>
+<pre><code>## [1] &quot;ts&quot;</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="variable-serie-tiempo.html#cb29-1" tabindex="-1"></a><span class="st">&quot;Inicio serie&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;Inicio serie&quot;</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="variable-serie-tiempo.html#cb31-1" tabindex="-1"></a><span class="fu">start</span>(indice.ts)</span></code></pre></div>
+<pre><code>## [1] 2017    2</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="variable-serie-tiempo.html#cb33-1" tabindex="-1"></a><span class="st">&quot;fin serie&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;fin serie&quot;</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="variable-serie-tiempo.html#cb35-1" tabindex="-1"></a><span class="fu">end</span>(indice.ts)</span></code></pre></div>
+<pre><code>## [1] 2018    2</code></pre>
+<p><strong>Gráfica de la serie</strong></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="variable-serie-tiempo.html#cb37-1" tabindex="-1"></a><span class="fu">hist</span>(indice.ts,<span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;valor&quot;</span>, <span class="at">col=</span><span class="st">&#39;orange&#39;</span>, <span class="at">xlab =</span><span class="st">&quot;MAGNITUD_ML&quot;</span>)</span>
+<span id="cb37-2"><a href="variable-serie-tiempo.html#cb37-2" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;MAGNITUD DEL SISMO EN EL TIEMPO&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-15-1.svg" width="672" />
+La distribución de la magnitud de los sismos en el municipio de Los Santos Santander evidencia que la mayoria de los sismos presentados son de magnitud baja y no presnetan un mayor riezgo para la población. Hay presencia de sismos de magnitud fuerte sin embargo hay que revisar la profundidad de estos para determinar si causan daños a la población.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="variable-serie-tiempo.html#cb38-1" tabindex="-1"></a><span class="fu">plot</span>(indice.ts,<span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;valor&quot;</span>, <span class="at">col=</span><span class="st">&#39;orange&#39;</span>, <span class="at">xlab =</span><span class="st">&quot;FECHA&quot;</span>)</span>
+<span id="cb38-2"><a href="variable-serie-tiempo.html#cb38-2" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;MAGNITUD DEL SISMO EN EL TIEMPO&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-16-1.svg" width="672" /></p>
+<p><strong>Serie de tiempo Profundidad</strong></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="variable-serie-tiempo.html#cb39-1" tabindex="-1"></a>P_indice.ts <span class="ot">&lt;-</span> <span class="fu">ts</span>(sismo_4_max_completo_filtrado<span class="sc">$</span>MIN_PROFUNDIDAD,<span class="at">start =</span> <span class="fu">c</span>(<span class="dv">2017</span>,<span class="dv">2</span>),<span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2018</span>,<span class="dv">2</span>), <span class="at">frequency =</span> <span class="dv">365</span>)</span>
+<span id="cb39-2"><a href="variable-serie-tiempo.html#cb39-2" tabindex="-1"></a><span class="co">#head(indice.ts,10) </span></span>
+<span id="cb39-3"><a href="variable-serie-tiempo.html#cb39-3" tabindex="-1"></a><span class="fu">head</span>(P_indice.ts)</span></code></pre></div>
+<pre><code>## Time Series:
+## Start = c(2017, 2) 
+## End = c(2017, 7) 
+## Frequency = 365 
+## [1] 136.8 139.6 138.5 133.9 136.1 136.8</code></pre>
+<p><strong>Datos de la serie</strong></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="variable-serie-tiempo.html#cb41-1" tabindex="-1"></a><span class="st">&quot;Tipo ts&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;Tipo ts&quot;</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="variable-serie-tiempo.html#cb43-1" tabindex="-1"></a><span class="fu">class</span>(P_indice.ts)</span></code></pre></div>
+<pre><code>## [1] &quot;ts&quot;</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="variable-serie-tiempo.html#cb45-1" tabindex="-1"></a><span class="st">&quot;Inicio serie&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;Inicio serie&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="variable-serie-tiempo.html#cb47-1" tabindex="-1"></a><span class="fu">start</span>(P_indice.ts)</span></code></pre></div>
+<pre><code>## [1] 2017    2</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="variable-serie-tiempo.html#cb49-1" tabindex="-1"></a><span class="st">&quot;fin serie&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;fin serie&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="variable-serie-tiempo.html#cb51-1" tabindex="-1"></a><span class="fu">end</span>(P_indice.ts)</span></code></pre></div>
+<pre><code>## [1] 2018    2</code></pre>
+<p><strong>Gráfica de la serie</strong></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="variable-serie-tiempo.html#cb53-1" tabindex="-1"></a><span class="fu">hist</span>(P_indice.ts,<span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;valor&quot;</span>, <span class="at">col=</span><span class="st">&#39;saddlebrown&#39;</span>, <span class="at">xlab =</span><span class="st">&quot;PROFUNDIDA&quot;</span>)</span>
+<span id="cb53-2"><a href="variable-serie-tiempo.html#cb53-2" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;PROFUNDIDAD DEL SISMO (KM) EN EL TIEMPO&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-19-1.svg" width="672" />
+La distribución de la profundiad de los sismos en el municipio de Los Santos Santander evidencia que la mayoria de los sismos presentados son de alta profunidad y no presnetan un mayor riezgo para la población.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="variable-serie-tiempo.html#cb54-1" tabindex="-1"></a><span class="fu">plot</span>(P_indice.ts,<span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;valor&quot;</span>, <span class="at">col=</span><span class="st">&#39;saddlebrown&#39;</span>, <span class="at">xlab =</span><span class="st">&quot;FECHA&quot;</span>)</span>
+<span id="cb54-2"><a href="variable-serie-tiempo.html#cb54-2" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;PROFUNDIDAD DEL SISMO (KM) EN EL TIEMPO&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-20-1.svg" width="672" /></p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="variable-numéricas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gráfica-de-sismos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown/edit/main/inst/examples/01-introduction.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf", "bookdown.epub", "bookdown.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

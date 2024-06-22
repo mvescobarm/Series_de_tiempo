@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.3 Modelo Jordan Profundidad | Análisis de la sismología en el municipio de Santos, Santander</title>
+  <meta name="description" content="Base de datos de sismos" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.3 Modelo Jordan Profundidad | Análisis de la sismología en el municipio de Santos, Santander" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://bookdown.org/yihui/bookdown//images/cover.jpg" />
+  <meta property="og:description" content="Base de datos de sismos" />
+  <meta name="github-repo" content="rstudio/bookdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.3 Modelo Jordan Profundidad | Análisis de la sismología en el municipio de Santos, Santander" />
+  
+  <meta name="twitter:description" content="Base de datos de sismos" />
+  <meta name="twitter:image" content="https://bookdown.org/yihui/bookdown//images/cover.jpg" />
+
+<meta name="author" content="Grupo 1: Victoria Escobar - Wladimir Avila - Mario García" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelo-elman-magnitud.html"/>
+<link rel="next" href="modelo-jordan-magnitud.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Authoring Books with R Markdown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <span style="color:blue"><strong>Información Sismos</strong></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="recurso-técnico-de-información.html"><a href="recurso-técnico-de-información.html"><i class="fa fa-check"></i><b>1.1</b> <span style="color:darkgreen"><strong>Recurso Técnico de información:</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="2" data-path="contenido-de-la-data.html"><a href="contenido-de-la-data.html"><i class="fa fa-check"></i><b>2</b> <span style="color:blue"><strong>Contenido de la Data</strong></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html"><i class="fa fa-check"></i><b>2.1</b> <span style="color:darkgreen"><strong>Observación de los datos</strong></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#el-tiempo-universal-coordinado-hora_utc"><i class="fa fa-check"></i><b>2.1.1</b> <strong>El Tiempo Universal Coordinado (HORA_UTC):</strong></a></li>
+<li class="chapter" data-level="2.1.2" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#magnitud-local-ml"><i class="fa fa-check"></i><b>2.1.2</b> <strong>Magnitud Local (Ml):</strong></a></li>
+<li class="chapter" data-level="2.1.3" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#magnitud-de-momento-mw"><i class="fa fa-check"></i><b>2.1.3</b> <strong>Magnitud de momento (Mw):</strong></a></li>
+<li class="chapter" data-level="2.1.4" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#root-mean-square-rms"><i class="fa fa-check"></i><b>2.1.4</b> <strong>Root Mean Square (RMS):</strong></a></li>
+<li class="chapter" data-level="2.1.5" data-path="observación-de-los-datos.html"><a href="observación-de-los-datos.html#brecha-sísmica-gap"><i class="fa fa-check"></i><b>2.1.5</b> <strong>Brecha sísmica (GAP):</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="descripción-datos.html"><a href="descripción-datos.html"><i class="fa fa-check"></i><b>2.2</b> <span style="color:darkgreen"><strong>Descripción Datos</strong> </span></a></li>
+<li class="chapter" data-level="2.3" data-path="imputar-datos.html"><a href="imputar-datos.html"><i class="fa fa-check"></i><b>2.3</b> <span style="color:darkgreen"><strong>Imputar Datos</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="variable-numéricas.html"><a href="variable-numéricas.html"><i class="fa fa-check"></i><b>3</b> <span style="color:blue"><strong>Variable Numéricas</strong></span></a></li>
+<li class="chapter" data-level="4" data-path="variable-serie-tiempo.html"><a href="variable-serie-tiempo.html"><i class="fa fa-check"></i><b>4</b> <span style="color:darkgreen"><strong>Variable Serie Tiempo</strong> </span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gráfica-de-sismos.html"><a href="gráfica-de-sismos.html"><i class="fa fa-check"></i><b>4.1</b> Gráfica de sismos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="holt-winter.html"><a href="holt-winter.html"><i class="fa fa-check"></i><b>5</b> <span style="color:blue"><strong>Holt-Winter</strong></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="magnitud.html"><a href="magnitud.html"><i class="fa fa-check"></i><b>5.1</b> Magnitud</a></li>
+<li class="chapter" data-level="5.2" data-path="profundidad.html"><a href="profundidad.html"><i class="fa fa-check"></i><b>5.2</b> Profundidad</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> <span style="color:blue"><strong>ARIMA</strong></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="magnitud-1.html"><a href="magnitud-1.html"><i class="fa fa-check"></i><b>6.1</b> Magnitud</a></li>
+<li class="chapter" data-level="6.2" data-path="profundidad-1.html"><a href="profundidad-1.html"><i class="fa fa-check"></i><b>6.2</b> Profundidad</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="algoritmo-facebooks-prophet.html"><a href="algoritmo-facebooks-prophet.html"><i class="fa fa-check"></i><b>7</b> <span style="color:blue"><strong>Algoritmo Facebook’s Prophet</strong></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="magnitud-2.html"><a href="magnitud-2.html"><i class="fa fa-check"></i><b>7.1</b> Magnitud</a></li>
+<li class="chapter" data-level="7.2" data-path="profundidad-2.html"><a href="profundidad-2.html"><i class="fa fa-check"></i><b>7.2</b> Profundidad</a></li>
+<li class="chapter" data-level="7.3" data-path="gráfica-combinada-magnitud.html"><a href="gráfica-combinada-magnitud.html"><i class="fa fa-check"></i><b>7.3</b> Gráfica combinada Magnitud</a></li>
+<li class="chapter" data-level="7.4" data-path="gráfica-combinada-pronóstico.html"><a href="gráfica-combinada-pronóstico.html"><i class="fa fa-check"></i><b>7.4</b> Gráfica combinada Pronóstico</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modelo-elman.html"><a href="modelo-elman.html"><i class="fa fa-check"></i><b>8</b> <span style="color:blue"><strong>Modelo Elman</strong></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="modelo-elman-profundidad.html"><a href="modelo-elman-profundidad.html"><i class="fa fa-check"></i><b>8.1</b> Modelo Elman Profundidad</a></li>
+<li class="chapter" data-level="8.2" data-path="modelo-elman-magnitud.html"><a href="modelo-elman-magnitud.html"><i class="fa fa-check"></i><b>8.2</b> Modelo Elman Magnitud</a></li>
+<li class="chapter" data-level="8.3" data-path="modelo-jordan-profundidad.html"><a href="modelo-jordan-profundidad.html"><i class="fa fa-check"></i><b>8.3</b> Modelo Jordan Profundidad</a></li>
+<li class="chapter" data-level="8.4" data-path="modelo-jordan-magnitud.html"><a href="modelo-jordan-magnitud.html"><i class="fa fa-check"></i><b>8.4</b> Modelo Jordan Magnitud</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i><b>9</b> <span style="color:blue"><strong>Bibliografía</strong></span></a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis de la sismología en el municipio de Santos, Santander</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelo-jordan-profundidad" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Modelo Jordan Profundidad<a href="modelo-jordan-profundidad.html#modelo-jordan-profundidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="modelo-jordan-profundidad.html#cb152-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb152-2"><a href="modelo-jordan-profundidad.html#cb152-2" tabindex="-1"></a><span class="fu">library</span>(RSNNS)</span>
+<span id="cb152-3"><a href="modelo-jordan-profundidad.html#cb152-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb152-4"><a href="modelo-jordan-profundidad.html#cb152-4" tabindex="-1"></a>data <span class="ot">=</span> data_profundidad</span>
+<span id="cb152-5"><a href="modelo-jordan-profundidad.html#cb152-5" tabindex="-1"></a></span>
+<span id="cb152-6"><a href="modelo-jordan-profundidad.html#cb152-6" tabindex="-1"></a>train_size <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fl">0.80</span> <span class="sc">*</span> <span class="fu">nrow</span>(data))</span>
+<span id="cb152-7"><a href="modelo-jordan-profundidad.html#cb152-7" tabindex="-1"></a></span>
+<span id="cb152-8"><a href="modelo-jordan-profundidad.html#cb152-8" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> data[<span class="dv">1</span><span class="sc">:</span>train_size, ]</span>
+<span id="cb152-9"><a href="modelo-jordan-profundidad.html#cb152-9" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> data[(train_size <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">nrow</span>(data), ]</span>
+<span id="cb152-10"><a href="modelo-jordan-profundidad.html#cb152-10" tabindex="-1"></a></span>
+<span id="cb152-11"><a href="modelo-jordan-profundidad.html#cb152-11" tabindex="-1"></a></span>
+<span id="cb152-12"><a href="modelo-jordan-profundidad.html#cb152-12" tabindex="-1"></a>max_val <span class="ot">&lt;-</span> <span class="fu">max</span>(data<span class="sc">$</span>y)</span>
+<span id="cb152-13"><a href="modelo-jordan-profundidad.html#cb152-13" tabindex="-1"></a>min_val <span class="ot">&lt;-</span> <span class="fu">min</span>(data<span class="sc">$</span>y)</span>
+<span id="cb152-14"><a href="modelo-jordan-profundidad.html#cb152-14" tabindex="-1"></a></span>
+<span id="cb152-15"><a href="modelo-jordan-profundidad.html#cb152-15" tabindex="-1"></a>normalize <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb152-16"><a href="modelo-jordan-profundidad.html#cb152-16" tabindex="-1"></a>  <span class="fu">return</span> ((x <span class="sc">-</span> min_val) <span class="sc">/</span> (max_val <span class="sc">-</span> min_val))</span>
+<span id="cb152-17"><a href="modelo-jordan-profundidad.html#cb152-17" tabindex="-1"></a>}</span>
+<span id="cb152-18"><a href="modelo-jordan-profundidad.html#cb152-18" tabindex="-1"></a></span>
+<span id="cb152-19"><a href="modelo-jordan-profundidad.html#cb152-19" tabindex="-1"></a>train_data<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">normalize</span>(train_data<span class="sc">$</span>y)</span>
+<span id="cb152-20"><a href="modelo-jordan-profundidad.html#cb152-20" tabindex="-1"></a>test_data<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">normalize</span>(test_data<span class="sc">$</span>y)</span>
+<span id="cb152-21"><a href="modelo-jordan-profundidad.html#cb152-21" tabindex="-1"></a></span>
+<span id="cb152-22"><a href="modelo-jordan-profundidad.html#cb152-22" tabindex="-1"></a>create_lagged_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(data, lag) {</span>
+<span id="cb152-23"><a href="modelo-jordan-profundidad.html#cb152-23" tabindex="-1"></a>  inputs <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb152-24"><a href="modelo-jordan-profundidad.html#cb152-24" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">lagged_y =</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(y, lag)) <span class="sc">%&gt;%</span></span>
+<span id="cb152-25"><a href="modelo-jordan-profundidad.html#cb152-25" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
+<span id="cb152-26"><a href="modelo-jordan-profundidad.html#cb152-26" tabindex="-1"></a>  </span>
+<span id="cb152-27"><a href="modelo-jordan-profundidad.html#cb152-27" tabindex="-1"></a>  inputs_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(inputs<span class="sc">$</span>lagged_y)</span>
+<span id="cb152-28"><a href="modelo-jordan-profundidad.html#cb152-28" tabindex="-1"></a>  outputs_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(inputs<span class="sc">$</span>y)</span>
+<span id="cb152-29"><a href="modelo-jordan-profundidad.html#cb152-29" tabindex="-1"></a>  </span>
+<span id="cb152-30"><a href="modelo-jordan-profundidad.html#cb152-30" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">inputs =</span> inputs_matrix, <span class="at">outputs =</span> outputs_matrix))</span>
+<span id="cb152-31"><a href="modelo-jordan-profundidad.html#cb152-31" tabindex="-1"></a>}</span>
+<span id="cb152-32"><a href="modelo-jordan-profundidad.html#cb152-32" tabindex="-1"></a></span>
+<span id="cb152-33"><a href="modelo-jordan-profundidad.html#cb152-33" tabindex="-1"></a>lag <span class="ot">&lt;-</span> <span class="dv">2</span>  </span>
+<span id="cb152-34"><a href="modelo-jordan-profundidad.html#cb152-34" tabindex="-1"></a></span>
+<span id="cb152-35"><a href="modelo-jordan-profundidad.html#cb152-35" tabindex="-1"></a>train_matrices <span class="ot">&lt;-</span> <span class="fu">create_lagged_matrix</span>(train_data, lag)</span>
+<span id="cb152-36"><a href="modelo-jordan-profundidad.html#cb152-36" tabindex="-1"></a>test_matrices <span class="ot">&lt;-</span> <span class="fu">create_lagged_matrix</span>(test_data, lag)</span>
+<span id="cb152-37"><a href="modelo-jordan-profundidad.html#cb152-37" tabindex="-1"></a></span>
+<span id="cb152-38"><a href="modelo-jordan-profundidad.html#cb152-38" tabindex="-1"></a>jordan_model <span class="ot">&lt;-</span> <span class="fu">jordan</span>(train_matrices<span class="sc">$</span>inputs, train_matrices<span class="sc">$</span>outputs, <span class="at">size =</span> <span class="fu">c</span>(<span class="dv">5</span>), <span class="at">maxit =</span> <span class="dv">500</span>, <span class="at">learnFuncParams =</span> <span class="fu">c</span>(<span class="fl">0.1</span>), <span class="at">initFunc =</span> <span class="st">&quot;JE_Weights&quot;</span>)</span>
+<span id="cb152-39"><a href="modelo-jordan-profundidad.html#cb152-39" tabindex="-1"></a></span>
+<span id="cb152-40"><a href="modelo-jordan-profundidad.html#cb152-40" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(jordan_model, test_matrices<span class="sc">$</span>inputs)</span>
+<span id="cb152-41"><a href="modelo-jordan-profundidad.html#cb152-41" tabindex="-1"></a></span>
+<span id="cb152-42"><a href="modelo-jordan-profundidad.html#cb152-42" tabindex="-1"></a><span class="co"># Desnormalizar las predicciones</span></span>
+<span id="cb152-43"><a href="modelo-jordan-profundidad.html#cb152-43" tabindex="-1"></a>denormalize <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb152-44"><a href="modelo-jordan-profundidad.html#cb152-44" tabindex="-1"></a>  <span class="fu">return</span> (x <span class="sc">*</span> (max_val <span class="sc">-</span> min_val) <span class="sc">+</span> min_val)</span>
+<span id="cb152-45"><a href="modelo-jordan-profundidad.html#cb152-45" tabindex="-1"></a>}</span>
+<span id="cb152-46"><a href="modelo-jordan-profundidad.html#cb152-46" tabindex="-1"></a></span>
+<span id="cb152-47"><a href="modelo-jordan-profundidad.html#cb152-47" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">denormalize</span>(predictions)</span>
+<span id="cb152-48"><a href="modelo-jordan-profundidad.html#cb152-48" tabindex="-1"></a></span>
+<span id="cb152-49"><a href="modelo-jordan-profundidad.html#cb152-49" tabindex="-1"></a><span class="co"># Comparar las predicciones con los valores reales</span></span>
+<span id="cb152-50"><a href="modelo-jordan-profundidad.html#cb152-50" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb152-51"><a href="modelo-jordan-profundidad.html#cb152-51" tabindex="-1"></a>  <span class="at">Date =</span> test_data<span class="sc">$</span>ds[(lag <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">nrow</span>(test_data)],</span>
+<span id="cb152-52"><a href="modelo-jordan-profundidad.html#cb152-52" tabindex="-1"></a>  <span class="at">Actual =</span> <span class="fu">denormalize</span>(test_data<span class="sc">$</span>y[(lag <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">nrow</span>(test_data)]),</span>
+<span id="cb152-53"><a href="modelo-jordan-profundidad.html#cb152-53" tabindex="-1"></a>  <span class="at">Predicted =</span> predictions</span>
+<span id="cb152-54"><a href="modelo-jordan-profundidad.html#cb152-54" tabindex="-1"></a>)</span>
+<span id="cb152-55"><a href="modelo-jordan-profundidad.html#cb152-55" tabindex="-1"></a></span>
+<span id="cb152-56"><a href="modelo-jordan-profundidad.html#cb152-56" tabindex="-1"></a><span class="fu">head</span>(results,<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##          Date Actual Predicted
+## 1  2016-10-07  134.0  136.1674
+## 2  2016-10-08  138.0  136.2298
+## 3  2016-10-09  136.0  136.2104
+## 4  2016-10-10  130.0  136.1753
+## 5  2016-10-11  140.0  136.1932
+## 6  2016-10-12  139.3  136.2499
+## 7  2016-10-13  130.9  136.1584
+## 8  2016-10-14  128.0  136.1656
+## 9  2016-10-15  134.6  136.2416
+## 10 2016-10-16  140.5  136.2698</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="modelo-jordan-profundidad.html#cb154-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> results, <span class="fu">aes</span>(<span class="at">x =</span> Date)) <span class="sc">+</span></span>
+<span id="cb154-2"><a href="modelo-jordan-profundidad.html#cb154-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Actual, <span class="at">color =</span> <span class="st">&quot;Actual&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb154-3"><a href="modelo-jordan-profundidad.html#cb154-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Predicted, <span class="at">color =</span> <span class="st">&quot;Predicted&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb154-4"><a href="modelo-jordan-profundidad.html#cb154-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Predicciones vs Valores Reales Profundidad&quot;</span>,</span>
+<span id="cb154-5"><a href="modelo-jordan-profundidad.html#cb154-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Fecha&quot;</span>,</span>
+<span id="cb154-6"><a href="modelo-jordan-profundidad.html#cb154-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Valor&quot;</span>,</span>
+<span id="cb154-7"><a href="modelo-jordan-profundidad.html#cb154-7" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Leyenda&quot;</span>) <span class="sc">+</span></span>
+<span id="cb154-8"><a href="modelo-jordan-profundidad.html#cb154-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-47-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="modelo-jordan-profundidad.html#cb155-1" tabindex="-1"></a>test_data_new <span class="ot">&lt;-</span> <span class="fu">head</span>(test_data, <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb155-2"><a href="modelo-jordan-profundidad.html#cb155-2" tabindex="-1"></a></span>
+<span id="cb155-3"><a href="modelo-jordan-profundidad.html#cb155-3" tabindex="-1"></a></span>
+<span id="cb155-4"><a href="modelo-jordan-profundidad.html#cb155-4" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>ds, data<span class="sc">$</span>y, <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">main =</span> <span class="st">&#39;Predicciones del Modelo Jordan Profundidad con todo el historico&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Fecha&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Profundidad&#39;</span>)</span>
+<span id="cb155-5"><a href="modelo-jordan-profundidad.html#cb155-5" tabindex="-1"></a><span class="fu">lines</span>(test_data_new<span class="sc">$</span>ds, predictions, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb155-6"><a href="modelo-jordan-profundidad.html#cb155-6" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Real&quot;</span>,<span class="st">&quot;Predicción Prueba&quot;</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-47-2.svg" width="672" /></p>
+<p>Estas dos gráficas muestran predicciones de la profundidad de los sismos utilizando diferentes modelos. En la primera gráfica, se comparan los valores reales de la profundidad (línea roja) con las predicciones realizadas (línea azul claro) a lo largo del tiempo, indicando que las predicciones siguen de cerca los valores reales pero con cierta desviación. La segunda gráfica presenta las predicciones realizadas con el modelo Jordan (línea roja) contra los datos históricos (línea azul). Aquí, se observa que las predicciones del modelo Jordan tienden a estabilizarse en un rango más estrecho, lo cual puede indicar una mayor consistencia, pero también una posible subestimación de las fluctuaciones observadas en los datos reales.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelo-elman-magnitud.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelo-jordan-magnitud.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown/edit/main/inst/examples/01-introduction.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf", "bookdown.epub", "bookdown.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
