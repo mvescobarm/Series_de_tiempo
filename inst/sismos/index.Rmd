@@ -45,6 +45,7 @@ lapply(names(githubs), function(pkg) {
 ```
 
 
+
 # <span style="color:blue">**Información Sismos**</span>
 
 Colombia es considerado un país de alto riesgo sísmico debido a que se ubica en el Cinturón de Fuego del Pacífico, una zona que concentra el 75% de los volcanes que existen en el mundo y donde suceden aproximadamente el 80% de los temblores más fuertes a nivel mundial.
@@ -62,3 +63,4 @@ Por lo tanto,  analizar y predecir esta situación es crucial para implementar m
 Los datos para efectuar esta investigación se obtuvieron del Servicio Geológico Colombiano (SGC) a través del Catálogo de Sismicidad en formato Excel correspondiente al período desde el 28 de febrero de 2011 hasta el 28 de febrero de 2018. Esta base de datos contiene 33.848 registros. 
 
 El SGC es una entidad pública adscrita al Ministerio de Minas y Energía de Colombia, la cual tiene como función principal la investigación geocientífica del territorio colombiano para generar conocimiento sobre los recursos naturales y los riesgos geológicos del país. Teniendo en cuenta lo anterior, se eligió como fuente de información, ya que, es una fuente confiable y verificada que garantiza la precisión y completitud de los datos. 
+
